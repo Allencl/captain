@@ -1,10 +1,11 @@
 import './App.css';
-import { Button } from 'antd';
+import LayoutPage from './Layout.jsx';
+
 
 function App() {
   return (
     <div className="App">
-      <h1><Button type="primary">Primary Button</Button></h1>
+      <LayoutPage />
     </div>
   );
 }
