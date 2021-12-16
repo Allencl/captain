@@ -2,10 +2,7 @@ import React from 'react';
 import { Layout, Menu,Spin, Breadcrumb } from 'antd';
 import store from 'store';
 
-import {
-  HomeOutlined,
-  PieChartOutlined,
-} from '@ant-design/icons';
+import {HomeOutlined,AliyunOutlined} from '@ant-design/icons';
 
 import {BrowserRouter,Routes, Route,Link } from 'react-router-dom';
 
@@ -48,7 +45,7 @@ class Page extends React.Component {
                     <Menu.Item key="1" icon={<HomeOutlined />}>
                         <Link to="/">{"首页"}</Link>
                     </Menu.Item>
-                    <Menu.Item key="2" icon={<HomeOutlined />}>
+                    <Menu.Item key="2" icon={<AliyunOutlined />}>
                         <Link to="/CsvToJson">{"CSV->Json"}</Link>
                     </Menu.Item>
                 </Menu>

@@ -1,6 +1,8 @@
 import React from 'react';
-import {Table,message,Button,Modal,Input,Tag} from 'antd';
+import {Table,message,Button,Modal,Tag} from 'antd';
 import store from 'store';
+import {AliyunOutlined} from '@ant-design/icons';
+
 import {asyncFormatCSVToJSON} from 'utils';
 
 
@@ -30,6 +32,10 @@ class Page extends React.Component {
         store.dispatch({
             type: 'update_global_spin',
             value: true
+        });    
+        
+        this.setState({
+            JSONSource:[]
         });        
 
         this.setState({loading:true,fileName:file['name'],dataSource:[]});
@@ -55,14 +61,26 @@ class Page extends React.Component {
 
     }  
 
-  render(){
-    return (<div>
-        <div style={{height:43,marginTop:10}}>
-            <input onChange={this.changeHandle} type="file" />
-            {/* <Button onClick={this.toJsonHandle} style={{float:'right'}} type="primary" icon="export" size="small" >JSON</Button> */}
-        </div>
-    </div>);
-  }
+
+    // data -> json
+    toJsonHandle=()=>{
+        let {dataSource}=this.state;
+        console.log(dataSource);
+    }
+
+    render(){
+        let {JSONSource}=this.state;
+
+        return (<div>
+            <div style={{height:43,marginTop:10}}>
+                <input onChange={this.changeHandle} type="file" />
+                {/* <Button onClick={this.toJsonHandle} style={{float:'right'}} type="primary" icon="export" size="small" >JSON</Button> */}
+            </div>
+            <div>
+                <Button onClick={this.toJsonHandle} type="primary" icon={<AliyunOutlined />}>转JSON</Button>
+            </div>
+        </div>);
+    }
 }
 
 
