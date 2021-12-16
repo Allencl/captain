@@ -2,12 +2,14 @@ import React from 'react';
 import { Layout, Menu,Spin, Breadcrumb } from 'antd';
 import store from 'store';
 
-import {HomeOutlined,AliyunOutlined} from '@ant-design/icons';
+import {HomeOutlined,AliyunOutlined,LineChartOutlined} from '@ant-design/icons';
 
 import {BrowserRouter,Routes, Route,Link } from 'react-router-dom';
 
 import HomeRoute from "./Home.jsx";
 import CsvToJsonRoute from "./view/CsvToJson.jsx";
+import ChartsRoute from "./view/Charts.jsx";
+
 
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -48,6 +50,9 @@ class Page extends React.Component {
                     <Menu.Item key="2" icon={<AliyunOutlined />}>
                         <Link to="/CsvToJson">{"CSV->Json"}</Link>
                     </Menu.Item>
+                    <Menu.Item key="3" icon={<LineChartOutlined />}>
+                        <Link to="/Charts">{"Charts"}</Link>
+                    </Menu.Item>                    
                 </Menu>
             </Sider>
             <Layout className="site-layout" style={{background:"#fff"}}>
@@ -56,6 +61,9 @@ class Page extends React.Component {
                       <Routes>
                           <Route path="/" element={<HomeRoute />} />
                           <Route path="/CsvToJson" element={<CsvToJsonRoute />} />
+                          <Route path="/Charts" element={<ChartsRoute />} />
+
+                          
                       </Routes>
                   </Content>
                 </Spin>
