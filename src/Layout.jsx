@@ -28,7 +28,7 @@ class Page extends React.Component {
     return (<BrowserRouter>
         <Layout style={{ minHeight: '100vh' }}>
             <Sider style={{background:"#fff"}} collapsible collapsed={collapsed} onCollapse={this.onCollapse}>
-                <Menu defaultSelectedKeys={['1']} mode="inline">
+                <Menu style={{height:"100%"}} defaultSelectedKeys={['1']} mode="inline">
                     <Menu.Item key="1" icon={<HomeOutlined />}>
                         <Link to="/">{"首页"}</Link>
                     </Menu.Item>
@@ -38,7 +38,7 @@ class Page extends React.Component {
                 </Menu>
             </Sider>
             <Layout className="site-layout">
-                <Content style={{ margin: '0 16px' }}>
+                <Content style={{ padding:'0 16px',background:"#fff" }}>
                     <Routes>
                         <Route path="/" element={<HomeRoute />} />
                         <Route path="/CsvToJson" element={<CsvToJsonRoute />} />
