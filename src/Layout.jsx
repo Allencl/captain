@@ -1,5 +1,7 @@
 import React from 'react';
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Layout, Menu,Spin, Breadcrumb } from 'antd';
+import store from 'store';
+
 import {
   HomeOutlined,
   PieChartOutlined,
@@ -15,16 +17,30 @@ const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
 class Page extends React.Component {
+
   state = {
     collapsed: false,
-  };
+    spinning:false
+  }
+
+  componentDidMount(){
+    let that=this;
+    store.subscribe(()=>{
+      let _data=store.getState();
+
+      that.setState({
+        spinning:_data.global_spin_active
+      });
+    })   
+  }
 
   onCollapse = collapsed => {
     this.setState({ collapsed });
   };
 
   render() {
-    const { collapsed } = this.state;
+    const { collapsed,spinning } = this.state;
+
     return (<BrowserRouter>
         <Layout style={{ minHeight: '100vh' }}>
             <Sider style={{background:"#fff"}} collapsible collapsed={collapsed} onCollapse={this.onCollapse}>
@@ -37,13 +53,15 @@ class Page extends React.Component {
                     </Menu.Item>
                 </Menu>
             </Sider>
-            <Layout className="site-layout">
-                <Content style={{ padding:'0 16px',background:"#fff" }}>
-                    <Routes>
-                        <Route path="/" element={<HomeRoute />} />
-                        <Route path="/CsvToJson" element={<CsvToJsonRoute />} />
-                    </Routes>
-                </Content>
+            <Layout className="site-layout" style={{background:"#fff"}}>
+                <Spin size="large" spinning={spinning}>
+                  <Content style={{ padding:'0 16px',background:"#fff" }}>
+                      <Routes>
+                          <Route path="/" element={<HomeRoute />} />
+                          <Route path="/CsvToJson" element={<CsvToJsonRoute />} />
+                      </Routes>
+                  </Content>
+                </Spin>
             </Layout>
         </Layout>
     </BrowserRouter>);
