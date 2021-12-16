@@ -1,17 +1,18 @@
 import React from 'react';
-import {Table,message,Button,Modal,Tag} from 'antd';
+import {Table,message,Button,Input,Tag} from 'antd';
 import store from 'store';
 import {AliyunOutlined} from '@ant-design/icons';
 
 import {asyncFormatCSVToJSON} from 'utils';
 
-
+const { TextArea } = Input;
 
 class Page extends React.Component {
     state = {
         visible:false,
         loading: false,
-        dataSource:[]
+        jsonString:'',
+        JSONSource:[]
     };
 
     // csv to json
@@ -35,7 +36,8 @@ class Page extends React.Component {
         });    
         
         this.setState({
-            JSONSource:[]
+            JSONSource:[],
+            jsonString:''
         });        
 
         this.setState({loading:true,fileName:file['name'],dataSource:[]});
@@ -64,12 +66,35 @@ class Page extends React.Component {
 
     // data -> json
     toJsonHandle=()=>{
-        let {dataSource}=this.state;
-        console.log(dataSource);
+
+        store.dispatch({
+            type: 'update_global_spin',
+            value: true
+        });
+
+        let {JSONSource}=this.state;
+
+        if(!JSONSource["length"]){
+            message.warning('未选择文件！');
+            store.dispatch({
+                type: 'update_global_spin',
+                value: false
+            });
+            return
+        }
+
+        this.setState({
+            jsonString:JSON.stringify(JSONSource)
+        },()=>{
+            store.dispatch({
+                type: 'update_global_spin',
+                value: false
+            });
+        });
     }
 
     render(){
-        let {JSONSource}=this.state;
+        let {jsonString,JSONSource}=this.state;
 
         return (<div>
             <div style={{height:43,marginTop:10}}>
@@ -78,6 +103,26 @@ class Page extends React.Component {
             </div>
             <div>
                 <Button onClick={this.toJsonHandle} type="primary" icon={<AliyunOutlined />}>转JSON</Button>
+                
+                { JSONSource["length"] ?
+                    <span>
+                        <Tag style={{marginLeft:22}} color="#2db7f5">
+                            {JSONSource["length"]}{" 天"}
+                        </Tag>
+                        <Tag style={{marginLeft:8}} color="#108ee9">
+                            { ((JSONSource["length"])/31).toFixed(1)  }{" 月"}
+                        </Tag>                         
+                        <Tag style={{marginLeft:8}} color="#87d068">
+                            { ((JSONSource["length"])/365).toFixed(1)  }{" 年"}
+                        </Tag>                        
+                    </span>
+                    :
+                    ''
+                }
+                
+            </div>
+            <div style={{marginTop:12}}>
+                <TextArea rows={26} value={jsonString} />
             </div>
         </div>);
     }
