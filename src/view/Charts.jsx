@@ -41,6 +41,8 @@ class Page extends React.Component {
         };
         
         option && myChart.setOption(option);
+        message.success('数据更新成功！');
+
     }
 
 
@@ -116,9 +118,15 @@ class Page extends React.Component {
                         { allNumber ? 
                             <div style={{textAlign:"right"}}>
                                 <Tag style={{marginRight:32}} icon={<BarChartOutlined />} color="#2db7f5">{String(allNumber)}</Tag>
-                                <Tag style={{marginRight:9,marginLeft:3}} icon={<RiseOutlined />} color="#108ee9">{String(upNumber)}</Tag>
+                                <Tag style={{marginRight:9,marginLeft:3}} icon={<RiseOutlined />} color="#108ee9">
+                                    {String(upNumber)}
+                                    {` (${((upNumber/allNumber)*100).toFixed(2)})%`}
+                                </Tag>
                                 <Tag color="cyan">{(upNumber>downNumber)?"多于":"少于"}</Tag>
-                                <Tag style={{marginLeft:0}} icon={<FallOutlined />} color="#108ee9">{String(downNumber)}</Tag>
+                                <Tag style={{marginLeft:0}} icon={<FallOutlined />} color="#108ee9">
+                                    {String(downNumber)}
+                                    {` (${((downNumber/allNumber)*100).toFixed(2)})%`}
+                                </Tag>
                             </div>
                             :""
                         }                        
