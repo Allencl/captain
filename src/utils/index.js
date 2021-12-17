@@ -1,4 +1,5 @@
-// global func  
+import store from 'store';
+
 
 
 /**
@@ -6,25 +7,7 @@
  * @param {*} filename 
  */
 const GlobalSymbol = [
-    'XAGUSD',
-    'XAUUSD',
-    '',
-    'USDJPY',
-    'GBPJPY',
-    '',
-    // 'USDCHF',
-    // 'GBPUSD',
-    // 'EURGBP',
-    // 'EURJPY',
-    // '',
-    // 'BRN',
-    // 'WTI',
-    // '',
-    // 'DAX30',
-    // 'FTSE100',
-    // 'IBEX35',
-    // 'NIKK255',
-    // 'SPX500'
+
 ];
 
 /**
@@ -104,8 +87,22 @@ async function asyncFormatCSVToJSON(file){
 }
 
 
-module.exports = {
-    GlobalSymbol:GlobalSymbol,
-    asyncFormatCSVToJSON:asyncFormatCSVToJSON,    
-    asyncGetDataFromPublic:asyncGetDataFromPublic
+/**
+ * 全局 lodding
+ */
+ async function globalLoadingUpdate(active){
+    store.dispatch({
+        type: 'update_global_spin',
+        value: active
+    });
 }
+
+
+
+export {GlobalSymbol,asyncFormatCSVToJSON,asyncGetDataFromPublic,globalLoadingUpdate};
+
+// module.exports = {
+//     GlobalSymbol:GlobalSymbol,
+//     asyncFormatCSVToJSON:asyncFormatCSVToJSON,    
+//     asyncGetDataFromPublic:asyncGetDataFromPublic
+// }

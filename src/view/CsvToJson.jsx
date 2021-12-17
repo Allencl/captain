@@ -1,9 +1,8 @@
 import React from 'react';
-import {Table,message,Button,Input,Tag} from 'antd';
-import store from 'store';
+import {message,Button,Input,Tag} from 'antd';
 import {AliyunOutlined} from '@ant-design/icons';
 
-import {asyncFormatCSVToJSON} from 'utils';
+import {asyncFormatCSVToJSON,globalLoadingUpdate} from 'utils';
 
 const { TextArea } = Input;
 
@@ -30,10 +29,8 @@ class Page extends React.Component {
             return;
         }
 
-        store.dispatch({
-            type: 'update_global_spin',
-            value: true
-        });    
+
+        globalLoadingUpdate(true);
         
         this.setState({
             JSONSource:[],
@@ -43,10 +40,9 @@ class Page extends React.Component {
         this.setState({loading:true,fileName:file['name'],dataSource:[]});
         asyncFormatCSVToJSON(file).then(o=>{
 
-            store.dispatch({
-                type: 'update_global_spin',
-                value: false
-            });
+
+            globalLoadingUpdate(false);
+
             
             // updete
             this.setState({
@@ -56,10 +52,9 @@ class Page extends React.Component {
             });
         });
 
-        store.dispatch({
-            type: 'update_global_spin',
-            value: false
-        });
+
+        globalLoadingUpdate(false);
+
 
     }  
 
@@ -67,29 +62,22 @@ class Page extends React.Component {
     // data -> json
     toJsonHandle=()=>{
 
-        store.dispatch({
-            type: 'update_global_spin',
-            value: true
-        });
+        globalLoadingUpdate(true);
+
 
         let {JSONSource}=this.state;
 
         if(!JSONSource["length"]){
             message.warning('未选择文件！');
-            store.dispatch({
-                type: 'update_global_spin',
-                value: false
-            });
+            globalLoadingUpdate(false);
+
             return
         }
 
         this.setState({
             jsonString:JSON.stringify(JSONSource)
         },()=>{
-            store.dispatch({
-                type: 'update_global_spin',
-                value: false
-            });
+            globalLoadingUpdate(false);
         });
     }
 
