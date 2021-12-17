@@ -2,7 +2,7 @@ import React from 'react';
 import {message,Button,Input,Tag} from 'antd';
 import {AliyunOutlined} from '@ant-design/icons';
 
-import {asyncFormatCSVToJSON,globalLoadingUpdate} from 'utils';
+import {asyncFormatCSVToJSON} from 'utils';
 
 const { TextArea } = Input;
 
@@ -30,7 +30,6 @@ class Page extends React.Component {
         }
 
 
-        globalLoadingUpdate(true);
         
         this.setState({
             JSONSource:[],
@@ -41,7 +40,7 @@ class Page extends React.Component {
         asyncFormatCSVToJSON(file).then(o=>{
 
 
-            globalLoadingUpdate(false);
+
 
             
             // updete
@@ -53,7 +52,7 @@ class Page extends React.Component {
         });
 
 
-        globalLoadingUpdate(false);
+
 
 
     }  
@@ -62,22 +61,18 @@ class Page extends React.Component {
     // data -> json
     toJsonHandle=()=>{
 
-        globalLoadingUpdate(true);
+
 
 
         let {JSONSource}=this.state;
 
         if(!JSONSource["length"]){
             message.warning('未选择文件！');
-            globalLoadingUpdate(false);
-
             return
         }
 
         this.setState({
             jsonString:JSON.stringify(JSONSource)
-        },()=>{
-            globalLoadingUpdate(false);
         });
     }
 

@@ -10,6 +10,18 @@ const GlobalSymbol = [
 
 ];
 
+
+
+/**
+ * 全局 lodding
+*/
+ async function globalLoadingUpdate(active){
+    store.dispatch({
+        type: 'update_global_spin',
+        value: active
+    });
+}
+
 /**
  * 
  * @param {* from public} filename 
@@ -53,6 +65,7 @@ async function asyncGetDataFromPublic(filename) {
  * @param {*} file 
  */
 async function asyncFormatCSVToJSON(file){
+    globalLoadingUpdate(true);
 
     // csv to json 
     function formatCSVToJSON(file) {
@@ -83,23 +96,42 @@ async function asyncFormatCSVToJSON(file){
     }
 
     let data = await formatCSVToJSON(file);
+
+    globalLoadingUpdate(false);
     return {data:data};
 }
 
 
+
+
 /**
- * 全局 lodding
- */
- async function globalLoadingUpdate(active){
-    store.dispatch({
-        type: 'update_global_spin',
-        value: active
+ * 
+ * @param {file}  
+*/
+async function globalGetLocalFile(file){
+    globalLoadingUpdate(true);
+    
+    return new Promise((resolve)=>{
+        let reader = new FileReader();
+        reader.readAsText(file, 'UTF-8');
+    
+        reader.onload=function(e){
+            let _data = this.result;
+            globalLoadingUpdate(false);
+
+            resolve(_data);
+        };
     });
 }
 
 
-
-export {GlobalSymbol,asyncFormatCSVToJSON,asyncGetDataFromPublic,globalLoadingUpdate};
+export {
+    GlobalSymbol,
+    asyncFormatCSVToJSON,
+    asyncGetDataFromPublic,
+    globalLoadingUpdate,
+    globalGetLocalFile
+};
 
 // module.exports = {
 //     GlobalSymbol:GlobalSymbol,

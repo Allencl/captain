@@ -1,7 +1,7 @@
 import React from 'react';
-import {Table,message,Button,Input,Tag} from 'antd';
+import {message,Button,Input,Tag} from 'antd';
 import * as echarts from 'echarts';
-import {asyncFormatCSVToJSON,globalLoadingUpdate} from 'utils';
+import {globalGetLocalFile} from 'utils';
 
 
 class Page extends React.Component {
@@ -55,31 +55,10 @@ class Page extends React.Component {
             return;
         }
 
-        globalLoadingUpdate(true);
-   
-        
-        this.setState({
-            JSONSource:[],
-            jsonString:''
-        });        
-
-        this.setState({loading:true,fileName:file['name'],dataSource:[]});
-        asyncFormatCSVToJSON(file).then(o=>{
-            
-            console.log(o)
-
-            globalLoadingUpdate(false);
-
-            
-            // updete
-            this.setState({
-                loading:false,
-                JSONSource:o['data']
-                // dataSource:newData,
-            });
+        globalGetLocalFile(file).then((file)=>{
+            console.log(file);
+            console.log(1377);
         });
-
-        globalLoadingUpdate(false);
 
 
     }  
