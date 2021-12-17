@@ -81,7 +81,7 @@ class Page extends React.Component {
 
         return (<div>
             <div style={{height:43,marginTop:10}}>
-                <input onChange={this.changeHandle} type="file" />
+                <input style={{width:"100%",color:"#1890ff",fontWeight:500}} onChange={this.changeHandle} type="file" />
                 {/* <Button onClick={this.toJsonHandle} style={{float:'right'}} type="primary" icon="export" size="small" >JSON</Button> */}
             </div>
             <div>
