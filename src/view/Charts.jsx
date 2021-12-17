@@ -12,28 +12,31 @@ class Page extends React.Component {
     };
 
     componentDidMount(){
-        this.initFunc();
+        // this.initFunc();
     }
 
     /**
      * 初始化
      */
-    initFunc(){
+    initFunc(data){
         var chartDom = document.getElementById('echarts');
         var myChart = echarts.init(chartDom);
         var option;
+        let _list=["01","02","03","04","05","06","07","08","09","10","11","12"];
+
+        console.log(data);
 
         option = {
           xAxis: {
             type: 'category',
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            data: _list
           },
           yAxis: {
             type: 'value'
           },
           series: [
             {
-              data: [120, 200, 150, 80, 70, 110, 130],
+              data: _list.map(o=>data[o].length),
               type: 'bar'
             }
           ]
@@ -44,14 +47,33 @@ class Page extends React.Component {
 
 
     formatFunc=(data)=>{
+        let _json={
+            "01":[],
+            "02":[],
+            "03":[],
+            "04":[],
+            "05":[],
+            "06":[],
+            "07":[],
+            "08":[],
+            "09":[],
+            "10":[],
+            "11":[],
+            "12":[],
+        };
+
         let _data=data.filter((o)=>{
+            var _date=(o["<DATE>"]).split(".")[1];
             if(o["<CLOSE>"]>o["<OPEN>"]){
+                _json[_date]=_json[_date].concat([
+                    parseInt(o["<HIGH>"]-o["<LOW>"])
+                ])
                 return o;
             }
-
             return false;
         });
-        console.log(_data);
+
+        this.initFunc(_json);
 
         this.setState({
             allNumber:data["length"],
@@ -59,6 +81,7 @@ class Page extends React.Component {
             downNumber:data["length"]-_data["length"]
         });
     }
+
 
     // csv to json
     changeHandle=(event)=>{
