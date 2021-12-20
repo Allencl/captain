@@ -9,7 +9,9 @@ import {BrowserRouter,Routes, Route,Link } from 'react-router-dom';
 import HomeRoute from "./Home.jsx";
 import CsvToJsonRoute from "./view/CsvToJson.jsx";
 import ChartsRoute from "./view/Charts.jsx";
-import TableRoute from "./view/Table.jsx";
+import StockTableRoute from "./view/stockTable.jsx";
+import ForexTableRoute from "./view/forexTable.jsx";
+import ETFTableRoute from "./view/ETFTable.jsx";
 
 
 
@@ -55,9 +57,14 @@ class Page extends React.Component {
                         <Link to="/Charts">{"Charts"}</Link>
                     </Menu.Item>     
                     <Menu.Item key="4" icon={<TableOutlined />}>
-                        <Link to="/Table">{"表格"}</Link>
+                        <Link to="/stockTable">{"Stock"}</Link>
                     </Menu.Item>  
-
+                    <Menu.Item key="5" icon={<TableOutlined />}>
+                        <Link to="/forexTable">{"Forex"}</Link>
+                    </Menu.Item> 
+                    <Menu.Item key="6" icon={<TableOutlined />}>
+                        <Link to="/ETFTable">{"ETF"}</Link>
+                    </Menu.Item>                     
                                    
                 </Menu>
             </Sider>
@@ -68,7 +75,10 @@ class Page extends React.Component {
                           <Route path="/" element={<HomeRoute />} />
                           <Route path="/CsvToJson" element={<CsvToJsonRoute />} />
                           <Route path="/Charts" element={<ChartsRoute />} />
-                          <Route path="/Table" element={<TableRoute />} />
+                          <Route path="/stockTable" element={<StockTableRoute />} />
+                          <Route path="/forexTable" element={<ForexTableRoute />} />
+                          <Route path="/forexTable" element={<ForexTableRoute />} />
+                          <Route path="/ETFTable" element={<ETFTableRoute />} />
 
                           
                       </Routes>

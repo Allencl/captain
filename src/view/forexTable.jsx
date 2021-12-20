@@ -3,7 +3,7 @@ import {message,Row,Col,Table,Tag} from 'antd';
 import {globalGetLocalFile} from 'utils';
 import {BarChartOutlined,RiseOutlined,FallOutlined} from '@ant-design/icons';
 
-import tableJSON from 'dataLocal/table.json';
+import tableJSON from 'dataLocal/forexTable.json';
 
 
 
@@ -12,20 +12,15 @@ class Page extends React.Component {
         data:[],
         columns:[
             {
-              title: '名称',
-              dataIndex: 'name',
+              title: '国家',
+              dataIndex: 'country',
               width: 160,
             },
             {
-              title: '网址',
-              dataIndex: 'web',
+              title: '利率',
+              dataIndex: 'interestRate',
 
-            },
-            {
-              title: 'Address',
-              dataIndex: 'address',
-    
-            },
+            }
         ]
     };
 
@@ -47,6 +42,7 @@ class Page extends React.Component {
             <Table
                 columns={columns}
                 dataSource={data}
+                size={"small"}
             />    
    
         </div>);
