@@ -93,12 +93,17 @@ export default defineComponent({
         priceOver: undefined,
 
         items: [
+            '3',
+            '4',
             '5',
             '6',
             '7',
             '8',
             '9',
-            '10'
+            '10',
+            '11',
+            '12',
+            '13',
         ],
     }),
     created(){
