@@ -123,7 +123,7 @@ export default defineComponent({
                 const _priceOver=Number(priceOver)
              
                 const _len=(priceStart.toString().split(".")[1]||'').length
-                const _priceAbs=Math.abs(_priceStart-_priceOver)
+                const _priceAbs=(Math.abs(_priceStart-_priceOver))*Number(select)
                 const _priceAbs2=_len?_priceAbs.toFixed(_len):_priceAbs
                 
                 // 多头
