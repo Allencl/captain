@@ -125,15 +125,17 @@ export default defineComponent({
                 const _len=(priceStart.toString().split(".")[1]||'').length
                 const _priceAbs=(Math.abs(_priceStart-_priceOver))*Number(select)
                 const _priceAbs2=_len?_priceAbs.toFixed(_len):_priceAbs
-                
+         
                 // 多头
                 if(_priceStart>_priceOver){
 
                     const _result3=Number(_priceAbs2)+Number(_priceStart)
+                    const _result5=_len?_result3.toFixed(_len):_result3
+
 
                     Modal.success({
                         title: 'Result',
-                        content: h('h1', _result3),
+                        content: h('h1', _result5),
                     });
                 }
 
@@ -142,10 +144,11 @@ export default defineComponent({
                 if(_priceStart<_priceOver){
 
                     const _result55=Number(_priceStart)-Number(_priceAbs2)
+                    const _result6=_len?_result55.toFixed(_len):_result55
 
                     Modal.success({
                         title: 'Result',
-                        content: h('h1', _result55),
+                        content: h('h1', _result6),
                     });
                 }
  
