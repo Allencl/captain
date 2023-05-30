@@ -98,10 +98,12 @@ export default {
             });
         },
         changeSwitch(value){
-            localStorage.setItem("bufferSwitch001",value)
+            localStorage.setItem("bufferSwitch001",String(value))
         },
         changeNumber(value){
-            localStorage.setItem("bufferNumber001",value)
+            if(value){ 
+                localStorage.setItem("bufferNumber001",String(value.trim()))
+            }
         }
     }
 }
