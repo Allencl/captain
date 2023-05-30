@@ -19,7 +19,12 @@ const routes = [
     meta:{tittle:"计算",keepAlive:true},
     component: () => import('@/views/computer/index.vue')
   },
-
+  {
+    path: '/message',
+    name: 'message',
+    meta:{tittle:"消息",keepAlive:true},
+    component: () => import('@/views/message/index.vue')
+  },
 
 
   {
