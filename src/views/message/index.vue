@@ -56,47 +56,10 @@ export default {
     created(){
 
         this.active=localStorage.getItem("bufferSwitch001")=='true'?true:false
-
         this.time= Number( localStorage.getItem("bufferNumber001")||"55" )
-
-
-        this.$nextTick(()=>{
-            clearInterval(this.intervalBox)
-            this.intervalBox = setInterval(()=>{
-                const _Minutes=new Date().getMinutes()
-                if(_Minutes==Number(this.time)){
-                    if(!this.showNo && this.active){
-                        this.messageFunc()
-                    }
-                }else{
-                    this.showNo=false
-                }
-            },10000)
-        })
 
     },
     methods:{
-        messageFunc(){
-            const _Hours=new Date().getHours()
-            this.showNo=true
-            Notification.requestPermission().then(function(result) {
-                if (result === 'denied') {
-                    console.log('用户拒绝');
-                    return;
-                }
-                if (result === 'default') {
-                    console.log('用户未授权');
-                    return;
-                }
-                // 同意通知
-                new Notification(`小时循环! ${_Hours+1}`,{
-                    requireInteraction:true,
-                    tag:1,
-                    renotify: true,
-                    image: require('@/assets/sailboat.png')
-                });
-            });
-        },
         changeSwitch(value){
             localStorage.setItem("bufferSwitch001",String(value))
         },
