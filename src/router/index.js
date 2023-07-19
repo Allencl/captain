@@ -26,6 +26,14 @@ const routes = [
     component: () => import('@/views/message/index.vue')
   },
 
+  {
+    path: '/forx',
+    name: 'forx',
+    meta:{tittle:"FORX",keepAlive:true},
+    component: () => import('@/views/forx.vue')
+  },
+
+
 
   {
     path: '/404',
