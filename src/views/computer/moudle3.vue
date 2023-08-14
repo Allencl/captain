@@ -292,6 +292,25 @@ export default defineComponent({
                 valuePriceOver: 0.65052,   //  结束价
                 remark:"1手 0.00001个点 1USD",  // 备注
             },
+            { type:"line", remark:"-"},
+            {
+                type: 'copper',    // 类型
+                title:"铜",         // 标题
+                _precision:2,   //  小数位数
+                valuePriceStart: 380.00,   // 开始价
+                valuePriceOver: 370.00,   //  结束价
+                remark:"1手 1个点 1USD",  // 备注
+            },
+            {
+                type: 'USOil',    // 类型
+                title:"美国原油",         // 标题
+                _precision:1,   //  小数位数
+                valuePriceStart: 7391.0,   // 开始价
+                valuePriceOver: 7349.0,   //  结束价
+                remark:"1手 1个点 1USD",  // 备注
+            },
+
+            
         ]
 
 
@@ -309,8 +328,8 @@ export default defineComponent({
 
 
 
-            // 纳斯达克100   标普500  道琼斯 德国40 法国40 英国100 澳洲指数 中国50 黄金
-            if( ["NA100","SPX500","US30","US2000", "GER40","FH40","UK100","aus200","CH50","XAUUSD"].includes(type) ){
+            // 纳斯达克100   标普500  道琼斯 德国40 法国40 英国100 澳洲指数 中国50 黄金 铜 美国原油
+            if( ["NA100","SPX500","US30","US2000", "GER40","FH40","UK100","aus200","CH50","XAUUSD","copper","USOil"].includes(type) ){
                 var _count= (new BigNumber(valuePriceStart).minus(valuePriceOver)).absoluteValue().toNumber()
                 var _profit=new BigNumber(_count).multipliedBy(rate).toNumber()  // 止盈
                 
