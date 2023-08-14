@@ -6,7 +6,13 @@
             <v-icon style="font-size: 18px;margin-bottom:4px;margin-right: 6px;">mdi-desktop-classic</v-icon>
             FXCM 
 
-            <a-input-number v-model:value="money" :min="10" :max="10000" style="margin-left:32px;" />
+            <a-input-number v-model:value="money" @change="changeMoney" :min="10" :max="10000" style="margin-left:32px;" />
+            <a-tag color="#55acee" style="margin-left: 22px">
+                <template #icon>
+                    <v-icon icon="mdi-bird"></v-icon>
+                </template>
+                <b style="font-size: 12px;padding-left: 8px;">{{ rate }}倍</b>
+            </a-tag>
         </p>
 
 
@@ -291,7 +297,8 @@ export default defineComponent({
 
     }),
     created(){
-
+        const _value=localStorage.getItem("page_computer_money")||10
+        this.money=_value
     },
     methods:{
         // close change 111
@@ -434,7 +441,10 @@ export default defineComponent({
             }
             
         },
-
+        // 
+        changeMoney(value){
+            localStorage.setItem("page_computer_money",value)
+        }
     }
 })
 </script>
