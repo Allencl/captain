@@ -7,7 +7,7 @@
             FXCM 
 
             <a-input-number v-model:value="money" @change="changeMoney" :min="10" :max="10000" style="margin-left:32px;" />
-            <a-tag color="#55acee" style="margin-left: 22px">
+            <a-tag color="#00BCD4" style="margin-left: 22px">
                 <template #icon>
                     <v-icon icon="mdi-bird"></v-icon>
                 </template>
