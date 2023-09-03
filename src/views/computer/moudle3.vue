@@ -329,11 +329,11 @@ export default defineComponent({
             const _valuePriceOver=new BigNumber(valuePriceOver)
             const _count= ( _valuePriceStart.minus(_valuePriceOver) ).absoluteValue().toNumber()
 
-            // 纳斯达克100   标普500  道琼斯 
-            if( ["NA100"].includes(type) ){
+            // 纳斯达克100   标普500  道琼斯 罗素2000
+            if( ["NA100","SPX500","US30","US2000"].includes(type) ){
         
                 var _profit=new BigNumber(_count).multipliedBy(rate).toNumber()  // 止盈
-                record.number= new BigNumber(money).dividedBy(_count).toNumber()   // 手数
+                record.number= new BigNumber(money).dividedBy(_count).toNumber().toFixed(1)   // 手数
                 record.count=_count  // 点数
  
                 // 多 | 空
