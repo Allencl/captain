@@ -239,7 +239,7 @@ export default defineComponent({
                 _precision:0,   //  小数位数
                 valuePriceStart: 19190,   // 开始价
                 valuePriceOver: 19295,   //  结束价
-                remark:"1手 1个点 1USD 有偏差",  // 备注
+                remark:"1手 1个点 0.1USD 有偏差",  // 备注
             },
             { type:"line", remark:"-"},
 
@@ -251,14 +251,7 @@ export default defineComponent({
                 valuePriceOver: 1940,   //  结束价
                 remark:"1手 1个点 1USD",  // 备注
             },
-            {
-                type: 'XAGUSD',    // 类型
-                title:"白银",         // 标题
-                _precision:3,   //  小数位数
-                valuePriceStart: 23.145,   // 开始价
-                valuePriceOver: 23.023,   //  结束价
-                remark:"1手 0.001个点 1USD",  // 备注
-            },
+
             { type:"line", remark:"-"},
             {
                 type: 'GBPUSD',    // 类型
@@ -309,7 +302,14 @@ export default defineComponent({
             //     valuePriceOver: 7349.0,   //  结束价
             //     remark:"1手 1个点 1USD",  // 备注
             // },
-
+            {
+                type: 'XAGUSD',    // 类型
+                title:"白银",         // 标题
+                _precision:3,   //  小数位数
+                valuePriceStart: 23.145,   // 开始价
+                valuePriceOver: 23.023,   //  结束价
+                remark:"1手 0.001个点 1USD",  // 备注
+            },
             
         ]
 
@@ -329,13 +329,29 @@ export default defineComponent({
             const _valuePriceOver=new BigNumber(valuePriceOver)
             const _count= ( _valuePriceStart.minus(_valuePriceOver) ).absoluteValue().toNumber()
 
-            // 纳斯达克100   标普500  道琼斯 罗素2000
-            if( ["NA100","SPX500","US30","US2000"].includes(type) ){
+            // 纳斯达克100   标普500  道琼斯 罗素2000 德国40 法国40 英国100 澳洲指数 中国50 黄金
+            if( ["NA100","SPX500","US30","US2000","GER40","FH40","UK100","aus200","CH50","XAUUSD"].includes(type) ){
         
                 var _profit=new BigNumber(_count).multipliedBy(rate).toNumber()  // 止盈
                 record.number= new BigNumber(money).dividedBy(_count).toNumber().toFixed(1)   // 手数
                 record.count=_count  // 点数
  
+                // 多 | 空
+                if(_valuePriceStart>_valuePriceOver){
+                    record.direction='buy'   
+                    record.profit= new BigNumber(_valuePriceStart).plus(_profit).toNumber()   // 止盈
+                }else{
+                    record.direction='sell'
+                    record.profit= new BigNumber(_valuePriceStart).minus(_profit).toNumber()  // 止盈
+                }
+            }
+
+            // 恒生指数
+            if( ["HK33"].includes(type) ){
+                var _profit=new BigNumber(_count).multipliedBy(rate).toNumber()  // 止盈
+                record.number= new BigNumber(money).dividedBy(_count).multipliedBy(10).toNumber().toFixed(1)   // 手数
+                record.count=_count  // 点数
+
                 // 多 | 空
                 if(_valuePriceStart>_valuePriceOver){
                     record.direction='buy'   
