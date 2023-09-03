@@ -215,14 +215,14 @@ export default defineComponent({
                 valuePriceOver: 7300,   //  结束价
                 remark:"1手 1个点 1USD 有偏差",  // 备注
             },
-            {
-                type: 'jp225',    // 类型
-                title:"日经指数",         // 标题
-                _precision:0,   //  小数位数
-                valuePriceStart: 31787,   // 开始价
-                valuePriceOver: 31930,   //  结束价
-                remark:"1手 1个点 1USD 有偏差",  // 备注
-            },
+            // {
+            //     type: 'jp225',    // 类型
+            //     title:"日经指数",         // 标题
+            //     _precision:0,   //  小数位数
+            //     valuePriceStart: 31787,   // 开始价
+            //     valuePriceOver: 31930,   //  结束价
+            //     remark:"1手 1个点 1USD 有偏差",  // 备注
+            // },
 
             { type:"line", remark:"-"},
             {
@@ -301,14 +301,14 @@ export default defineComponent({
                 valuePriceOver: 370.00,   //  结束价
                 remark:"1手 1个点 1USD",  // 备注
             },
-            {
-                type: 'USOil',    // 类型
-                title:"美国原油",         // 标题
-                _precision:1,   //  小数位数
-                valuePriceStart: 7391.0,   // 开始价
-                valuePriceOver: 7349.0,   //  结束价
-                remark:"1手 1个点 1USD",  // 备注
-            },
+            // {
+            //     type: 'USOil',    // 类型
+            //     title:"美国原油",         // 标题
+            //     _precision:1,   //  小数位数
+            //     valuePriceStart: 7391.0,   // 开始价
+            //     valuePriceOver: 7349.0,   //  结束价
+            //     remark:"1手 1个点 1USD",  // 备注
+            // },
 
             
         ]
@@ -325,139 +325,158 @@ export default defineComponent({
             const {money,rate}=this
             const {type,valuePriceStart,valuePriceOver}=record
 
+            const _valuePriceStart=new BigNumber(valuePriceStart)
+            const _valuePriceOver=new BigNumber(valuePriceOver)
+            const _count= ( _valuePriceStart.minus(_valuePriceOver) ).absoluteValue().toNumber()
 
-
-
-            // 纳斯达克100   标普500  道琼斯 德国40 法国40 英国100 澳洲指数 中国50 黄金 铜 美国原油
-            if( ["NA100","SPX500","US30","US2000", "GER40","FH40","UK100","aus200","CH50","XAUUSD","copper","USOil"].includes(type) ){
-                var _count= (new BigNumber(valuePriceStart).minus(valuePriceOver)).absoluteValue().toNumber()
+            // 纳斯达克100   标普500  道琼斯 
+            if( ["NA100"].includes(type) ){
+        
                 var _profit=new BigNumber(_count).multipliedBy(rate).toNumber()  // 止盈
-                
-                record.number= new BigNumber(money).dividedBy(_count).toNumber().toFixed(1)   // 手数
-
-                
+                record.number= new BigNumber(money).dividedBy(_count).toNumber()   // 手数
+                record.count=_count  // 点数
+ 
                 // 多 | 空
-                if(valuePriceStart>valuePriceOver){
+                if(_valuePriceStart>_valuePriceOver){
                     record.direction='buy'   
-                    record.profit= new BigNumber(valuePriceStart).plus(_profit).toNumber()   // 止盈
+                    record.profit= new BigNumber(_valuePriceStart).plus(_profit).toNumber()   // 止盈
                 }else{
                     record.direction='sell'
-                    record.profit= new BigNumber(valuePriceStart).minus(_profit).toNumber()  // 止盈
+                    record.profit= new BigNumber(_valuePriceStart).minus(_profit).toNumber()  // 止盈
                 }
-                record.count=_count  // 点数
             }
+
+
+            // // 纳斯达克100   标普500  道琼斯 德国40 法国40 英国100 澳洲指数 中国50 黄金 铜 美国原油
+            // if( ["NA100","SPX500","US30","US2000", "GER40","FH40","UK100","aus200","CH50","XAUUSD","copper","USOil"].includes(type) ){
+            //     var _count= (new BigNumber(valuePriceStart).minus(valuePriceOver)).absoluteValue().toNumber()
+            //     var _profit=new BigNumber(_count).multipliedBy(rate).toNumber()  // 止盈
+                
+            //     record.number= new BigNumber(money).dividedBy(_count).toNumber().toFixed(1)   // 手数
+
+                
+            //     // 多 | 空
+            //     if(valuePriceStart>valuePriceOver){
+            //         record.direction='buy'   
+            //         record.profit= new BigNumber(valuePriceStart).plus(_profit).toNumber()   // 止盈
+            //     }else{
+            //         record.direction='sell'
+            //         record.profit= new BigNumber(valuePriceStart).minus(_profit).toNumber()  // 止盈
+            //     }
+            //     record.count=_count  // 点数
+            // }
 
 
             // 日经225
-            if( ["jp225"].includes(type) ){
+            // if( ["jp225"].includes(type) ){
 
-                var _count= (new BigNumber(valuePriceStart).minus(valuePriceOver)).absoluteValue().toNumber()
-                var _profit=new BigNumber(_count).multipliedBy(rate).toNumber()  // 止盈
+            //     var _count= (new BigNumber(valuePriceStart).minus(valuePriceOver)).absoluteValue().toNumber()
+            //     var _profit=new BigNumber(_count).multipliedBy(rate).toNumber()  // 止盈
                 
-                // record.number= new BigNumber(money).dividedBy(_count).toNumber().toFixed(1)   // 手数
+            //     // record.number= new BigNumber(money).dividedBy(_count).toNumber().toFixed(1)   // 手数
 
                 
-                // 多 | 空
-                if(valuePriceStart>valuePriceOver){
-                    record.direction='buy'   
-                    record.profit= new BigNumber(valuePriceStart).plus(_profit).toNumber()   // 止盈
-                }else{
-                    record.direction='sell'
-                    record.profit= new BigNumber(valuePriceStart).minus(_profit).toNumber()  // 止盈
-                }
-                record.count=_count  // 点数
+            //     // 多 | 空
+            //     if(valuePriceStart>valuePriceOver){
+            //         record.direction='buy'   
+            //         record.profit= new BigNumber(valuePriceStart).plus(_profit).toNumber()   // 止盈
+            //     }else{
+            //         record.direction='sell'
+            //         record.profit= new BigNumber(valuePriceStart).minus(_profit).toNumber()  // 止盈
+            //     }
+            //     record.count=_count  // 点数
 
-            }
+            // }
 
 
             // 恒生指数
             
-            if( ["HK33"].includes(type) ){
+            // if( ["HK33"].includes(type) ){
 
-                var _count= (new BigNumber(valuePriceStart).minus(valuePriceOver)).absoluteValue().toNumber()
-                var _profit=new BigNumber(_count).multipliedBy(rate).toNumber()  // 止盈
+            //     var _count= (new BigNumber(valuePriceStart).minus(valuePriceOver)).absoluteValue().toNumber()
+            //     var _profit=new BigNumber(_count).multipliedBy(rate).toNumber()  // 止盈
                 
-                record.number= new BigNumber(money).dividedBy(_count).multipliedBy(10).toNumber().toFixed(1)   // 手数
+            //     record.number= new BigNumber(money).dividedBy(_count).multipliedBy(10).toNumber().toFixed(1)   // 手数
 
 
-                // 多 | 空
-                if(valuePriceStart>valuePriceOver){
-                    record.direction='buy'   
-                    record.profit= new BigNumber(valuePriceStart).plus(_profit).toNumber()   // 止盈
-                }else{
-                    record.direction='sell'
-                    record.profit= new BigNumber(valuePriceStart).minus(_profit).toNumber()  // 止盈
-                }
-                record.count=_count  // 点数
+            //     // 多 | 空
+            //     if(valuePriceStart>valuePriceOver){
+            //         record.direction='buy'   
+            //         record.profit= new BigNumber(valuePriceStart).plus(_profit).toNumber()   // 止盈
+            //     }else{
+            //         record.direction='sell'
+            //         record.profit= new BigNumber(valuePriceStart).minus(_profit).toNumber()  // 止盈
+            //     }
+            //     record.count=_count  // 点数
 
 
-            }
+            // }
 
-            // 白银
-            if( ["XAGUSD"].includes(type) ){
+            // // 白银
+            // if( ["XAGUSD"].includes(type) ){
             
             
-                var _count= (new BigNumber(valuePriceStart).minus(valuePriceOver)).toNumber()
-                var _profit=new BigNumber(_count).multipliedBy(rate).toNumber()  // 止盈
+            //     var _count= (new BigNumber(valuePriceStart).minus(valuePriceOver)).toNumber()
+            //     var _profit=new BigNumber(_count).multipliedBy(rate).toNumber()  // 止盈
                 
-                record.number= new BigNumber(money).dividedBy(_count).toNumber().toFixed(1)   // 手数
+            //     record.number= new BigNumber(money).dividedBy(_count).toNumber().toFixed(1)   // 手数
 
-                // 多 | 空
-                if(valuePriceStart>valuePriceOver){
-                    record.direction='buy'   
-                    record.profit= new BigNumber(valuePriceStart).plus(_profit).toNumber()   // 止盈
-                }else{
-                    record.direction='sell'
-                    record.profit= new BigNumber(valuePriceStart).minus(_profit).toNumber()  // 止盈
-                }
-                record.count=_count  // 点数
+            //     // 多 | 空
+            //     if(valuePriceStart>valuePriceOver){
+            //         record.direction='buy'   
+            //         record.profit= new BigNumber(valuePriceStart).plus(_profit).toNumber()   // 止盈
+            //     }else{
+            //         record.direction='sell'
+            //         record.profit= new BigNumber(valuePriceStart).minus(_profit).toNumber()  // 止盈
+            //     }
+            //     record.count=_count  // 点数
 
             
-            }
+            // }
 
 
 
             // 英镑美元
-            if( ["GBPUSD","AUDNZD","CADCHF"].includes(type) ){
+            // if( ["GBPUSD","AUDNZD","CADCHF"].includes(type) ){
             
             
-                var _count= (new BigNumber(valuePriceStart).minus(valuePriceOver)).toNumber()
-                var _profit=new BigNumber(_count).multipliedBy(rate).toNumber()  // 止盈
+            //     var _count= (new BigNumber(valuePriceStart).minus(valuePriceOver)).toNumber()
+            //     var _profit=new BigNumber(_count).multipliedBy(rate).toNumber()  // 止盈
                 
-                record.number= new BigNumber(money).dividedBy(_count).dividedBy(100000).toNumber().toFixed(1)   // 手数
+            //     record.number= new BigNumber(money).dividedBy(_count).dividedBy(100000).toNumber().toFixed(1)   // 手数
 
-                // 多 | 空
-                if(valuePriceStart>valuePriceOver){
-                    record.direction='buy'   
-                    record.profit= new BigNumber(valuePriceStart).plus(_profit).toNumber()   // 止盈
-                }else{
-                    record.direction='sell'
-                    record.profit= new BigNumber(valuePriceStart).minus(_profit).toNumber()  // 止盈
-                }
-                record.count=_count  // 点数
+            //     // 多 | 空
+            //     if(valuePriceStart>valuePriceOver){
+            //         record.direction='buy'   
+            //         record.profit= new BigNumber(valuePriceStart).plus(_profit).toNumber()   // 止盈
+            //     }else{
+            //         record.direction='sell'
+            //         record.profit= new BigNumber(valuePriceStart).minus(_profit).toNumber()  // 止盈
+            //     }
+            //     record.count=_count  // 点数
 
-            }
+            // }
 
-            // 欧元日元
-            if( ["EURJPY"].includes(type) ){
+            // // 欧元日元
+            // if( ["EURJPY"].includes(type) ){
             
             
-                var _count= (new BigNumber(valuePriceStart).minus(valuePriceOver)).toNumber()
-                var _profit=new BigNumber(_count).multipliedBy(rate).toNumber()  // 止盈
+            //     var _count= (new BigNumber(valuePriceStart).minus(valuePriceOver)).toNumber()
+            //     var _profit=new BigNumber(_count).multipliedBy(rate).toNumber()  // 止盈
                 
-                record.number= new BigNumber(money).dividedBy(_count).dividedBy(1000).toNumber().toFixed(1)   // 手数
+            //     record.number= new BigNumber(money).dividedBy(_count).dividedBy(1000).toNumber().toFixed(1)   // 手数
 
-                // 多 | 空
-                if(valuePriceStart>valuePriceOver){
-                    record.direction='buy'   
-                    record.profit= new BigNumber(valuePriceStart).plus(_profit).toNumber()   // 止盈
-                }else{
-                    record.direction='sell'
-                    record.profit= new BigNumber(valuePriceStart).minus(_profit).toNumber()  // 止盈
-                }
-                record.count=_count  // 点数
+            //     // 多 | 空
+            //     if(valuePriceStart>valuePriceOver){
+            //         record.direction='buy'   
+            //         record.profit= new BigNumber(valuePriceStart).plus(_profit).toNumber()   // 止盈
+            //     }else{
+            //         record.direction='sell'
+            //         record.profit= new BigNumber(valuePriceStart).minus(_profit).toNumber()  // 止盈
+            //     }
+            //     record.count=_count  // 点数
 
-            }
+            // }
             
         },
         // 
