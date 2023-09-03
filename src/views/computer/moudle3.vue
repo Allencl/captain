@@ -4,7 +4,7 @@
       <v-card-text style="position: relative;">
         <p class="text-h6 text--primary">
             <v-icon style="font-size: 18px;margin-bottom:4px;margin-right: 6px;">mdi-desktop-classic</v-icon>
-            Forex 
+            <b>Forex</b> 
 
             <a-input-number v-model:value="money" @change="changeMoney" :min="10" :max="10000" style="margin-left:32px;" />
             <a-tag color="#00BCD4" style="margin-left: 22px">
@@ -257,6 +257,14 @@ export default defineComponent({
                 valuePriceOver: 1940,   //  结束价
                 remark:"1手 1个点 1USD",  // 备注
             },
+            {
+                type: 'XAGUSD',    // 类型
+                title:"白银",         // 标题
+                _precision:3,   //  小数位数
+                valuePriceStart: 23.145,   // 开始价
+                valuePriceOver: 23.023,   //  结束价
+                remark:"1手 0.001个点 0.001USD",  // 备注
+            },
 
             { type:"line", remark:"-"},
             {
@@ -308,14 +316,7 @@ export default defineComponent({
             //     valuePriceOver: 7349.0,   //  结束价
             //     remark:"1手 1个点 1USD",  // 备注
             // },
-            // {
-            //     type: 'XAGUSD',    // 类型
-            //     title:"白银",         // 标题
-            //     _precision:3,   //  小数位数
-            //     valuePriceStart: 23.145,   // 开始价
-            //     valuePriceOver: 23.023,   //  结束价
-            //     remark:"1手 0.001个点 1USD",  // 备注
-            // },
+
             
         ]
 
@@ -403,7 +404,22 @@ export default defineComponent({
                 }
             }
 
+            // 白银
+            if( ["XAGUSD"].includes(type) ){
+                var _count=_count2.toFixed(3)
+                var _profit=new BigNumber(_count).multipliedBy(rate).toNumber()  // 止盈
+                record.number= new BigNumber(money).dividedBy(_count).toNumber().toFixed(2)   // 手数
+                record.count=_count   // 点数
 
+                // 多 | 空
+                if(_valuePriceStart>_valuePriceOver){
+                    record.direction='buy'   
+                    record.profit= new BigNumber(_valuePriceStart).plus(_profit).toNumber()   // 止盈
+                }else{
+                    record.direction='sell'
+                    record.profit= new BigNumber(_valuePriceStart).minus(_profit).toNumber()  // 止盈
+                }
+            }
             
 
             // // 纳斯达克100   标普500  道琼斯 德国40 法国40 英国100 澳洲指数 中国50 黄金 铜 美国原油

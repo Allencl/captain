@@ -4,7 +4,7 @@
       <v-card-text style="position: relative;">
         <p class="text-h6 text--primary">
             <v-icon style="font-size: 18px;margin-bottom:4px;margin-right: 6px;">mdi-desktop-classic</v-icon>
-            FXCM 
+            <b>FXCM</b> 
 
             <a-input-number v-model:value="money" @change="changeMoney" :min="10" :max="10000" style="margin-left:32px;" />
             <a-tag color="#00BCD4" style="margin-left: 22px">
@@ -342,7 +342,7 @@ export default defineComponent({
 
     }),
     created(){
-        const _value=localStorage.getItem("page_computer_money")||10
+        const _value=localStorage.getItem("page_computer_money22")||10
         this.money=_value
     },
     methods:{
@@ -579,7 +579,7 @@ export default defineComponent({
         },
         // 
         changeMoney(value){
-            localStorage.setItem("page_computer_money",value)
+            localStorage.setItem("page_computer_money22",value)
         }
     }
 })

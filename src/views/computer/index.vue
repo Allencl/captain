@@ -9,8 +9,9 @@
                 color="cyan"
                 align-tabs="center"
             >
-            <v-tab value="1">Forex</v-tab>
-            <v-tab value="2">FXCM</v-tab>
+            
+            <v-tab value="1"><b>Forex</b></v-tab>
+            <v-tab value="2"><b>FXCM</b></v-tab>
             </v-tabs>
             <v-window v-model="tab">
                 <v-window-item value="1">
