@@ -56,6 +56,12 @@
             </template>
 
             <template #bodyCell="{ column, record }">
+                <template v-if="column.key === 'count'">
+                    <b style="color: #FF6D00;">{{ record.count?`${record.count} 点`:'' }}</b>
+                </template>
+                <template v-if="column.key === 'number'">
+                    <b style="color: #558B2F;">{{ record.number?`${record.number} 手`:'' }}</b>
+                </template>
                 <template v-if="column.key === 'type'">
                     <b>{{ record.title }}</b>
                 </template>
@@ -327,11 +333,11 @@ export default defineComponent({
 
             const _valuePriceStart=new BigNumber(valuePriceStart)
             const _valuePriceOver=new BigNumber(valuePriceOver)
-            const _count= ( _valuePriceStart.minus(_valuePriceOver) ).absoluteValue().toNumber()
+            const _count2= ( _valuePriceStart.minus(_valuePriceOver) ).absoluteValue().toNumber()
 
             // 纳斯达克100   标普500  道琼斯 罗素2000 德国40 法国40 英国100 澳洲指数 中国50 黄金
             if( ["NA100","SPX500","US30","US2000","GER40","FH40","UK100","aus200","CH50","XAUUSD"].includes(type) ){
-        
+                var _count=_count2
                 var _profit=new BigNumber(_count).multipliedBy(rate).toNumber()  // 止盈
                 record.number= new BigNumber(money).dividedBy(_count).toNumber().toFixed(1)   // 手数
                 record.count=_count  // 点数
@@ -348,6 +354,7 @@ export default defineComponent({
 
             // 恒生指数
             if( ["HK33"].includes(type) ){
+                var _count=_count2
                 var _profit=new BigNumber(_count).multipliedBy(rate).toNumber()  // 止盈
                 record.number= new BigNumber(money).dividedBy(_count).multipliedBy(10).toNumber().toFixed(1)   // 手数
                 record.count=_count  // 点数
@@ -362,6 +369,39 @@ export default defineComponent({
                 }
             }
 
+            // 英镑美元
+            if( ["GBPUSD"].includes(type) ){
+                var _count=_count2.toFixed(5)
+                var _profit=new BigNumber(_count).multipliedBy(rate).toNumber()  // 止盈
+                record.number= new BigNumber(money).dividedBy(_count).dividedBy(100000).toNumber().toFixed(2)   // 手数
+                record.count=_count  // 点数
+
+                // 多 | 空
+                if(_valuePriceStart>_valuePriceOver){
+                    record.direction='buy'   
+                    record.profit= new BigNumber(_valuePriceStart).plus(_profit).toNumber()   // 止盈
+                }else{
+                    record.direction='sell'
+                    record.profit= new BigNumber(_valuePriceStart).minus(_profit).toNumber()  // 止盈
+                }
+            }
+
+            // 欧元日元
+            if( ["EURJPY"].includes(type) ){
+                var _count=_count2.toFixed(3)
+                var _profit=new BigNumber(_count).multipliedBy(rate).toNumber()  // 止盈
+                record.number= new BigNumber(money).dividedBy(_count).dividedBy(1000).toNumber().toFixed(2)   // 手数
+                record.count=_count   // 点数
+
+                // 多 | 空
+                if(_valuePriceStart>_valuePriceOver){
+                    record.direction='buy'   
+                    record.profit= new BigNumber(_valuePriceStart).plus(_profit).toNumber()   // 止盈
+                }else{
+                    record.direction='sell'
+                    record.profit= new BigNumber(_valuePriceStart).minus(_profit).toNumber()  // 止盈
+                }
+            }
 
             // // 纳斯达克100   标普500  道琼斯 德国40 法国40 英国100 澳洲指数 中国50 黄金 铜 美国原油
             // if( ["NA100","SPX500","US30","US2000", "GER40","FH40","UK100","aus200","CH50","XAUUSD","copper","USOil"].includes(type) ){
