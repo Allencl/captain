@@ -276,26 +276,26 @@ export default defineComponent({
                 remark:"1手 0.001个点 1USD 有偏差",  // 备注
             },
             {
-                type: 'AUDNZD',    // 类型
-                title:"澳元-纽元",         // 标题
+                type: 'AUDCAD',    // 类型
+                title:"澳元-加元",         // 标题
                 _precision:5,   //  小数位数
-                valuePriceStart: 1.08530,   // 开始价
-                valuePriceOver: 1.08365,   //  结束价
+                valuePriceStart: 0.87273,   // 开始价
+                valuePriceOver: 0.87115,   //  结束价
                 remark:"1手 0.00001个点 1USD",  // 备注
             },
             {
-                type: 'CADCHF',    // 类型
-                title:"加元-法郎",         // 标题
+                type: 'NADCHF',    // 类型
+                title:"纽元-法郎",         // 标题
                 _precision:5,   //  小数位数
-                valuePriceStart: 0.65178,   // 开始价
-                valuePriceOver: 0.65052,   //  结束价
+                valuePriceStart: 0.52453,   // 开始价
+                valuePriceOver: 0.52324,   //  结束价
                 remark:"1手 0.00001个点 1USD",  // 备注
             },
             { type:"line", remark:"-"},
             {
                 type: 'copper',    // 类型
                 title:"铜",         // 标题
-                _precision:2,   //  小数位数
+                _precision:0,   //  小数位数
                 valuePriceStart: 380.00,   // 开始价
                 valuePriceOver: 370.00,   //  结束价
                 remark:"1手 1个点 1USD",  // 备注
@@ -308,14 +308,14 @@ export default defineComponent({
             //     valuePriceOver: 7349.0,   //  结束价
             //     remark:"1手 1个点 1USD",  // 备注
             // },
-            {
-                type: 'XAGUSD',    // 类型
-                title:"白银",         // 标题
-                _precision:3,   //  小数位数
-                valuePriceStart: 23.145,   // 开始价
-                valuePriceOver: 23.023,   //  结束价
-                remark:"1手 0.001个点 1USD",  // 备注
-            },
+            // {
+            //     type: 'XAGUSD',    // 类型
+            //     title:"白银",         // 标题
+            //     _precision:3,   //  小数位数
+            //     valuePriceStart: 23.145,   // 开始价
+            //     valuePriceOver: 23.023,   //  结束价
+            //     remark:"1手 0.001个点 1USD",  // 备注
+            // },
             
         ]
 
@@ -335,8 +335,8 @@ export default defineComponent({
             const _valuePriceOver=new BigNumber(valuePriceOver)
             const _count2= ( _valuePriceStart.minus(_valuePriceOver) ).absoluteValue().toNumber()
 
-            // 纳斯达克100   标普500  道琼斯 罗素2000 德国40 法国40 英国100 澳洲指数 中国50 黄金
-            if( ["NA100","SPX500","US30","US2000","GER40","FH40","UK100","aus200","CH50","XAUUSD"].includes(type) ){
+            // 纳斯达克100   标普500  道琼斯 罗素2000 德国40 法国40 英国100 澳洲指数 中国50 黄金 美铜
+            if( ["NA100","SPX500","US30","US2000","GER40","FH40","UK100","aus200","CH50","XAUUSD","copper"].includes(type) ){
                 var _count=_count2
                 var _profit=new BigNumber(_count).multipliedBy(rate).toNumber()  // 止盈
                 record.number= new BigNumber(money).dividedBy(_count).toNumber().toFixed(1)   // 手数
@@ -369,8 +369,8 @@ export default defineComponent({
                 }
             }
 
-            // 英镑美元
-            if( ["GBPUSD"].includes(type) ){
+            // 英镑美元 澳元加元 纽元法郎
+            if( ["GBPUSD","AUDCAD","NADCHF"].includes(type) ){
                 var _count=_count2.toFixed(5)
                 var _profit=new BigNumber(_count).multipliedBy(rate).toNumber()  // 止盈
                 record.number= new BigNumber(money).dividedBy(_count).dividedBy(100000).toNumber().toFixed(2)   // 手数
@@ -402,6 +402,9 @@ export default defineComponent({
                     record.profit= new BigNumber(_valuePriceStart).minus(_profit).toNumber()  // 止盈
                 }
             }
+
+
+            
 
             // // 纳斯达克100   标普500  道琼斯 德国40 法国40 英国100 澳洲指数 中国50 黄金 铜 美国原油
             // if( ["NA100","SPX500","US30","US2000", "GER40","FH40","UK100","aus200","CH50","XAUUSD","copper","USOil"].includes(type) ){
