@@ -156,7 +156,34 @@ export default defineComponent({
 
         // 数据
         data:[
+            {
+                type: 'wheatf',    // 类型
+                title:"wheatf(小麦)",         // 标题
+                _precision:2,   //  小数位数
+                valuePriceStart: 589.24,   // 开始价
+                valuePriceOver: 597.56,   //  结束价
+                remark:"1手 1个点 1USD",  // 备注
+            },
+            {
+                type: 'soyf',    // 类型
+                title:"soyf(大豆)",         // 标题
+                _precision:2,   //  小数位数
+                valuePriceStart: 1318.52,   // 开始价
+                valuePriceOver: 1311.52,   //  结束价
+                remark:"1手 1个点 1USD",  // 备注
+            },
+            
+            {
+                type: 'cornf',    // 类型
+                title:"cornf(玉米)",         // 标题
+                _precision:2,   //  小数位数
+                valuePriceStart: 473.67,   // 开始价
+                valuePriceOver: 468.85,   //  结束价
+                remark:"1手 1个点 1USD",  // 备注
+            },
 
+
+            { type:"line", remark:"-"},
             {
                 type: 'USOilSpot',    // 类型
                 title:"USOilSpot",         // 标题
@@ -165,6 +192,24 @@ export default defineComponent({
                 valuePriceOver: 80.370,   //  结束价
                 remark:"1手 1个点 0.001USD",  // 备注
             },
+            {
+                type: 'ngas',    // 类型
+                title:"ngas(天然气)",         // 标题
+                _precision:4,   //  小数位数
+                valuePriceStart: 2.7462,   // 开始价
+                valuePriceOver: 2.7002,   //  结束价
+                remark:"1手 1个点 0.01USD",  // 备注
+            },
+            { type:"line", remark:"-"},
+            {
+                type: 'bund',    // 类型
+                title:"bund(长期欧债)",         // 标题
+                _precision:3,   //  小数位数
+                valuePriceStart: 129.800,   // 开始价
+                valuePriceOver: 129.330,   //  结束价
+                remark:"1手 0.1个点 1USD",  // 备注
+            },
+
             { type:"line", remark:"-"},
 
             {
@@ -406,7 +451,22 @@ export default defineComponent({
             //     }
             // }
 
-
+            // 大豆 小麦 玉米
+            if( ["soyf","wheatf","cornf"].includes(type) ){
+                var _count=_count2
+                var _profit=new BigNumber(_count).multipliedBy(rate).toNumber()  // 止盈
+                record.number= new BigNumber(money).dividedBy(_count).toNumber().toFixed(1)   // 手数
+                record.count=_count  // 点数
+ 
+                // 多 | 空
+                if(_valuePriceStart>_valuePriceOver){
+                    record.direction='buy'   
+                    record.profit= new BigNumber(_valuePriceStart).plus(_profit).toNumber()   // 止盈
+                }else{
+                    record.direction='sell'
+                    record.profit= new BigNumber(_valuePriceStart).minus(_profit).toNumber()  // 止盈
+                }
+            }
             
             // 日经255
             if( ["jp225"].includes(type) ){
@@ -442,9 +502,39 @@ export default defineComponent({
                 }
             }
 
+            // 天然气
+            if( ["ngas"].includes(type) ){
+                var _count=_count2.toFixed(4)
+                var _profit=new BigNumber(_count).multipliedBy(rate).toNumber()  // 止盈
+                record.number= new BigNumber(money).dividedBy(_count).dividedBy(100).toNumber().toFixed(2)   // 手数
+                record.count=_count   // 点数
 
+                // 多 | 空
+                if(_valuePriceStart>_valuePriceOver){
+                    record.direction='buy'   
+                    record.profit= new BigNumber(_valuePriceStart).plus(_profit).toNumber()   // 止盈
+                }else{
+                    record.direction='sell'
+                    record.profit= new BigNumber(_valuePriceStart).minus(_profit).toNumber()  // 止盈
+                }
+            }
             
+            // 长期欧债
+            if( ["bund"].includes(type) ){
+                var _count=_count2.toFixed(3)
+                var _profit=new BigNumber(_count).multipliedBy(rate).toNumber()  // 止盈
+                record.number= new BigNumber(money).dividedBy(_count).dividedBy(10).toNumber().toFixed(2)   // 手数
+                record.count=_count   // 点数
 
+                // 多 | 空
+                if(_valuePriceStart>_valuePriceOver){
+                    record.direction='buy'   
+                    record.profit= new BigNumber(_valuePriceStart).plus(_profit).toNumber()   // 止盈
+                }else{
+                    record.direction='sell'
+                    record.profit= new BigNumber(_valuePriceStart).minus(_profit).toNumber()  // 止盈
+                }
+            }
             // // 纳斯达克100   标普500  道琼斯 德国40 法国40 英国100 澳洲指数 中国50 黄金 铜 美国原油
             // if( ["NA100","SPX500","US30","US2000", "GER40","FH40","UK100","aus200","CH50","XAUUSD","copper","USOil"].includes(type) ){
             //     var _count= (new BigNumber(valuePriceStart).minus(valuePriceOver)).absoluteValue().toNumber()
