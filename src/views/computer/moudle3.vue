@@ -308,6 +308,15 @@ export default defineComponent({
                 valuePriceOver: 370.00,   //  结束价
                 remark:"1手 1个点 1USD",  // 备注
             },
+            {
+                type: 'USDX',    // 类型
+                title:"美元指数",         // 标题
+                _precision:0,   //  小数位数
+                valuePriceStart: 10470,   // 开始价
+                valuePriceOver: 10490,   //  结束价
+                remark:"1手 1个点 1USD",  // 备注
+            },
+
             // {
             //     type: 'USOil',    // 类型
             //     title:"美国原油",         // 标题
@@ -336,8 +345,8 @@ export default defineComponent({
             const _valuePriceOver=new BigNumber(valuePriceOver)
             const _count2= ( _valuePriceStart.minus(_valuePriceOver) ).absoluteValue().toNumber()
 
-            // 纳斯达克100   标普500  道琼斯 罗素2000 德国40 法国40 英国100 澳洲指数 中国50 黄金 美铜
-            if( ["NA100","SPX500","US30","US2000","GER40","FH40","UK100","aus200","CH50","XAUUSD","copper"].includes(type) ){
+            // 纳斯达克100   标普500  道琼斯 罗素2000 德国40 法国40 英国100 澳洲指数 中国50 黄金 美铜 美元指数
+            if( ["NA100","SPX500","US30","US2000","GER40","FH40","UK100","aus200","CH50","XAUUSD","copper","USDX"].includes(type) ){
                 var _count=_count2
                 var _profit=new BigNumber(_count).multipliedBy(rate).toNumber()  // 止盈
                 record.number= new BigNumber(money).dividedBy(_count).toNumber().toFixed(1)   // 手数
