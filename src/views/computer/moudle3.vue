@@ -97,7 +97,7 @@ export default defineComponent({
     data: (_this) => ({ 
 
         money:20,   // 止损资金
-        rate:7,     // 收益比例
+        rate:10,     // 收益比例
 
         // 配置列
         columns:[
