@@ -156,98 +156,6 @@ export default defineComponent({
 
         // 数据
         data:[
-            {
-                type: 'NA100',    // 类型
-                title:"纳斯达克100",         // 标题
-                _precision:0,   //  小数位数
-                valuePriceStart: 15010,   // 开始价
-                valuePriceOver: 15000,   //  结束价
-                remark:"1手 1个点 1USD",  // 备注
-            },
-            {
-                type: 'SPX500',    // 类型
-                title:"标普500",         // 标题
-                _precision:0,   //  小数位数
-                valuePriceStart: 4480,   // 开始价
-                valuePriceOver: 4470,   //  结束价
-                remark:"1手 1个点 1USD",  // 备注
-            },
-            {
-                type: 'US30',    // 类型
-                title:"道琼斯",         // 标题
-                _precision:0,   //  小数位数
-                valuePriceStart: 35210,   // 开始价
-                valuePriceOver: 35200,   //  结束价
-                remark:"1手 1个点 1USD",  // 备注
-            },
-            {
-                type: 'US2000',    // 类型
-                title:"罗素2000",         // 标题
-                _precision:0,   //  小数位数
-                valuePriceStart: 1920,   // 开始价
-                valuePriceOver: 1910,   //  结束价
-                remark:"1手 1个点 1USD",  // 备注
-            },
-            { type:"line", remark:"-"},
-            {
-                type: 'GER40',    // 类型
-                title:"德国40",         // 标题
-                _precision:0,   //  小数位数
-                valuePriceStart: 15810,   // 开始价
-                valuePriceOver: 15800,   //  结束价
-                remark:"1手 1个点 1USD",  // 备注
-            },
-            {
-                type: 'FH40',    // 类型
-                title:"法国40",         // 标题
-                _precision:0,   //  小数位数
-                valuePriceStart: 7210,   // 开始价
-                valuePriceOver: 7200,   //  结束价
-                remark:"1手 1个点 1USD",  // 备注
-            },
-            {
-                type: 'UK100',    // 类型
-                title:"英国100",         // 标题
-                _precision:0,   //  小数位数
-                valuePriceStart: 7520,   // 开始价
-                valuePriceOver: 7500,   //  结束价
-                remark:"1手 1个点 1USD 有偏差",  // 备注
-            },
-            {
-                type: 'aus200',    // 类型
-                title:"澳洲指数",         // 标题
-                _precision:0,   //  小数位数
-                valuePriceStart: 7320,   // 开始价
-                valuePriceOver: 7300,   //  结束价
-                remark:"1手 1个点 1USD 有偏差",  // 备注
-            },
-            // {
-            //     type: 'jp225',    // 类型
-            //     title:"日经指数",         // 标题
-            //     _precision:0,   //  小数位数
-            //     valuePriceStart: 31787,   // 开始价
-            //     valuePriceOver: 31930,   //  结束价
-            //     remark:"1手 1个点 1USD 有偏差",  // 备注
-            // },
-
-            { type:"line", remark:"-"},
-            {
-                type: 'CH50',    // 类型
-                title:"中国50",         // 标题
-                _precision:0,   //  小数位数
-                valuePriceStart: 13120,   // 开始价
-                valuePriceOver: 13100,   //  结束价
-                remark:"1手 1个点 1USD",  // 备注
-            },
-            {
-                type: 'HK33',    // 类型
-                title:"恒生指数",         // 标题
-                _precision:0,   //  小数位数
-                valuePriceStart: 19190,   // 开始价
-                valuePriceOver: 19295,   //  结束价
-                remark:"1手 1个点 0.1USD 有偏差",  // 备注
-            },
-            { type:"line", remark:"-"},
 
             {
                 type: 'XAUUSD',    // 类型
@@ -265,8 +173,104 @@ export default defineComponent({
                 valuePriceOver: 23.023,   //  结束价
                 remark:"1手 0.001个点 0.001USD",  // 备注
             },
+            { type:"line", remark:"-"},
+
+
+            {
+                type: 'NA100',    // 类型
+                title:"纳斯达克100",         // 标题
+                _precision:0,   //  小数位数
+                valuePriceStart: 15010,   // 开始价
+                valuePriceOver: 15000,   //  结束价
+                remark:"1手 1个点 1USD",  // 备注
+            },
+            // {
+            //     type: 'SPX500',    // 类型
+            //     title:"标普500",         // 标题
+            //     _precision:0,   //  小数位数
+            //     valuePriceStart: 4480,   // 开始价
+            //     valuePriceOver: 4470,   //  结束价
+            //     remark:"1手 1个点 1USD",  // 备注
+            // },
+            {
+                type: 'US30',    // 类型
+                title:"道琼斯",         // 标题
+                _precision:0,   //  小数位数
+                valuePriceStart: 35210,   // 开始价
+                valuePriceOver: 35200,   //  结束价
+                remark:"1手 1个点 1USD",  // 备注
+            },
+            // {
+            //     type: 'US2000',    // 类型
+            //     title:"罗素2000",         // 标题
+            //     _precision:0,   //  小数位数
+            //     valuePriceStart: 1920,   // 开始价
+            //     valuePriceOver: 1910,   //  结束价
+            //     remark:"1手 1个点 1USD",  // 备注
+            // },
+            { type:"line", remark:"-"},
+            {
+                type: 'GER40',    // 类型
+                title:"德国40",         // 标题
+                _precision:0,   //  小数位数
+                valuePriceStart: 15810,   // 开始价
+                valuePriceOver: 15800,   //  结束价
+                remark:"1手 1个点 1USD",  // 备注
+            },
+            {
+                type: 'FH40',    // 类型
+                title:"法国40",         // 标题
+                _precision:0,   //  小数位数
+                valuePriceStart: 7210,   // 开始价
+                valuePriceOver: 7200,   //  结束价
+                remark:"1手 1个点 1USD",  // 备注
+            },
+            // {
+            //     type: 'UK100',    // 类型
+            //     title:"英国100",         // 标题
+            //     _precision:0,   //  小数位数
+            //     valuePriceStart: 7520,   // 开始价
+            //     valuePriceOver: 7500,   //  结束价
+            //     remark:"1手 1个点 1USD 有偏差",  // 备注
+            // },
+            // {
+            //     type: 'aus200',    // 类型
+            //     title:"澳洲指数",         // 标题
+            //     _precision:0,   //  小数位数
+            //     valuePriceStart: 7320,   // 开始价
+            //     valuePriceOver: 7300,   //  结束价
+            //     remark:"1手 1个点 1USD 有偏差",  // 备注
+            // },
+            // {
+            //     type: 'jp225',    // 类型
+            //     title:"日经指数",         // 标题
+            //     _precision:0,   //  小数位数
+            //     valuePriceStart: 31787,   // 开始价
+            //     valuePriceOver: 31930,   //  结束价
+            //     remark:"1手 1个点 1USD 有偏差",  // 备注
+            // },
 
             { type:"line", remark:"-"},
+            // {
+            //     type: 'CH50',    // 类型
+            //     title:"中国50",         // 标题
+            //     _precision:0,   //  小数位数
+            //     valuePriceStart: 13120,   // 开始价
+            //     valuePriceOver: 13100,   //  结束价
+            //     remark:"1手 1个点 1USD",  // 备注
+            // },
+            // {
+            //     type: 'HK33',    // 类型
+            //     title:"恒生指数",         // 标题
+            //     _precision:0,   //  小数位数
+            //     valuePriceStart: 19190,   // 开始价
+            //     valuePriceOver: 19295,   //  结束价
+            //     remark:"1手 1个点 0.1USD 有偏差",  // 备注
+            // },
+            // { type:"line", remark:"-"},
+
+
+            // { type:"line", remark:"-"},
             {
                 type: 'GBPUSD',    // 类型
                 title:"英镑-美元",         // 标题
@@ -276,6 +280,23 @@ export default defineComponent({
                 remark:"1手 0.00001个点 1USD",  // 备注
             },
             {
+                type: 'EURUSD',    // 类型
+                title:"欧元-美元",         // 标题
+                _precision:5,   //  小数位数
+                valuePriceStart: 1.08437,   // 开始价
+                valuePriceOver: 1.08076,   //  结束价
+                remark:"1手 0.00001个点 1USD",  // 备注
+            },
+            { type:"line", remark:"-"},
+            {
+                type: 'GBPJPY',    // 类型
+                title:"英镑-日元",         // 标题
+                _precision:3,   //  小数位数
+                valuePriceStart: 185.026,   // 开始价
+                valuePriceOver: 184.140,   //  结束价
+                remark:"1手 0.001个点 1USD 有偏差",  // 备注
+            },
+            {
                 type: 'EURJPY',    // 类型
                 title:"欧元-日元",         // 标题
                 _precision:3,   //  小数位数
@@ -283,22 +304,22 @@ export default defineComponent({
                 valuePriceOver: 158.120,   //  结束价
                 remark:"1手 0.001个点 1USD 有偏差",  // 备注
             },
-            {
-                type: 'AUDCAD',    // 类型
-                title:"澳元-加元",         // 标题
-                _precision:5,   //  小数位数
-                valuePriceStart: 0.87273,   // 开始价
-                valuePriceOver: 0.87115,   //  结束价
-                remark:"1手 0.00001个点 1USD",  // 备注
-            },
-            {
-                type: 'NADCHF',    // 类型
-                title:"纽元-法郎",         // 标题
-                _precision:5,   //  小数位数
-                valuePriceStart: 0.52453,   // 开始价
-                valuePriceOver: 0.52324,   //  结束价
-                remark:"1手 0.00001个点 1USD",  // 备注
-            },
+            // {
+            //     type: 'AUDCAD',    // 类型
+            //     title:"澳元-加元",         // 标题
+            //     _precision:5,   //  小数位数
+            //     valuePriceStart: 0.87273,   // 开始价
+            //     valuePriceOver: 0.87115,   //  结束价
+            //     remark:"1手 0.00001个点 1USD",  // 备注
+            // },
+            // {
+            //     type: 'NADCHF',    // 类型
+            //     title:"纽元-法郎",         // 标题
+            //     _precision:5,   //  小数位数
+            //     valuePriceStart: 0.52453,   // 开始价
+            //     valuePriceOver: 0.52324,   //  结束价
+            //     remark:"1手 0.00001个点 1USD",  // 备注
+            // },
             { type:"line", remark:"-"},
             {
                 type: 'copper',    // 类型
@@ -308,14 +329,14 @@ export default defineComponent({
                 valuePriceOver: 370.00,   //  结束价
                 remark:"1手 1个点 1USD",  // 备注
             },
-            {
-                type: 'USDX',    // 类型
-                title:"美元指数",         // 标题
-                _precision:0,   //  小数位数
-                valuePriceStart: 10470,   // 开始价
-                valuePriceOver: 10490,   //  结束价
-                remark:"1手 1个点 1USD",  // 备注
-            },
+            // {
+            //     type: 'USDX',    // 类型
+            //     title:"美元指数",         // 标题
+            //     _precision:0,   //  小数位数
+            //     valuePriceStart: 10470,   // 开始价
+            //     valuePriceOver: 10490,   //  结束价
+            //     remark:"1手 1个点 1USD",  // 备注
+            // },
 
             // {
             //     type: 'USOil',    // 类型
@@ -363,24 +384,24 @@ export default defineComponent({
             }
 
             // 恒生指数
-            if( ["HK33"].includes(type) ){
-                var _count=_count2
-                var _profit=new BigNumber(_count).multipliedBy(rate).toNumber()  // 止盈
-                record.number= new BigNumber(money).dividedBy(_count).multipliedBy(10).toNumber().toFixed(1)   // 手数
-                record.count=_count  // 点数
+            // if( ["HK33"].includes(type) ){
+            //     var _count=_count2
+            //     var _profit=new BigNumber(_count).multipliedBy(rate).toNumber()  // 止盈
+            //     record.number= new BigNumber(money).dividedBy(_count).multipliedBy(10).toNumber().toFixed(1)   // 手数
+            //     record.count=_count  // 点数
 
-                // 多 | 空
-                if(_valuePriceStart>_valuePriceOver){
-                    record.direction='buy'   
-                    record.profit= new BigNumber(_valuePriceStart).plus(_profit).toNumber()   // 止盈
-                }else{
-                    record.direction='sell'
-                    record.profit= new BigNumber(_valuePriceStart).minus(_profit).toNumber()  // 止盈
-                }
-            }
+            //     // 多 | 空
+            //     if(_valuePriceStart>_valuePriceOver){
+            //         record.direction='buy'   
+            //         record.profit= new BigNumber(_valuePriceStart).plus(_profit).toNumber()   // 止盈
+            //     }else{
+            //         record.direction='sell'
+            //         record.profit= new BigNumber(_valuePriceStart).minus(_profit).toNumber()  // 止盈
+            //     }
+            // }
 
-            // 英镑美元 澳元加元 纽元法郎
-            if( ["GBPUSD","AUDCAD","NADCHF"].includes(type) ){
+            // 英镑美元 欧元美元 澳元加元 纽元法郎
+            if( ["GBPUSD","EURUSD","AUDCAD","NADCHF"].includes(type) ){
                 var _count=_count2.toFixed(5)
                 var _profit=new BigNumber(_count).multipliedBy(rate).toNumber()  // 止盈
                 record.number= new BigNumber(money).dividedBy(_count).dividedBy(100000).toNumber().toFixed(2)   // 手数
@@ -396,8 +417,8 @@ export default defineComponent({
                 }
             }
 
-            // 欧元日元
-            if( ["EURJPY"].includes(type) ){
+            // 英镑日元 欧元日元
+            if( ["EURJPY","GBPJPY"].includes(type) ){
                 var _count=_count2.toFixed(3)
                 var _profit=new BigNumber(_count).multipliedBy(rate).toNumber()  // 止盈
                 record.number= new BigNumber(money).dividedBy(_count).dividedBy(1000).toNumber().toFixed(2)   // 手数
