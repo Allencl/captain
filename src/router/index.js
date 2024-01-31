@@ -50,6 +50,7 @@ const routes = [
 
 const router = createRouter({
   // history: createWebHistory(process.env.BASE_URL),
+  mode: process.env.IS_ELECTRON ? 'hash' : 'history',
   history: createWebHashHistory(),
   routes
 })

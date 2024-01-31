@@ -24,5 +24,10 @@ module.exports = defineConfig({
       filename: `css/[name].${timeStamp}.css`,
       chunkFilename: `css/chunk.[id].${timeStamp}.css`,
     }
+  },
+  pluginOptions: {
+    electronBuilder: {
+      customFileProtocol: "./"
+    }
   }
 })
