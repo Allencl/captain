@@ -3,7 +3,7 @@
 
 
 
-    <v-card>
+    <v-card  elevation="12">
             <v-tabs
                 v-model="tab"
                 color="cyan"
@@ -21,6 +21,7 @@
                     <MoudlePage4 />
                 </v-window-item>
             </v-window>
+            <div style="height: 62px;"></div>
     </v-card>
 
 
