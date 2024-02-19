@@ -156,14 +156,14 @@ export default defineComponent({
 
         // 数据
         data:[
-            {
-                type: 'wheatf',    // 类型
-                title:"wheatf(小麦)",         // 标题
-                _precision:2,   //  小数位数
-                valuePriceStart: 589.24,   // 开始价
-                valuePriceOver: 597.56,   //  结束价
-                remark:"1手 1个点 1USD",  // 备注
-            },
+            // {
+            //     type: 'wheatf',    // 类型
+            //     title:"wheatf(小麦)",         // 标题
+            //     _precision:2,   //  小数位数
+            //     valuePriceStart: 589.24,   // 开始价
+            //     valuePriceOver: 597.56,   //  结束价
+            //     remark:"1手 1个点 1USD",  // 备注
+            // },
             {
                 type: 'soyf',    // 类型
                 title:"soyf(大豆)",         // 标题
@@ -173,14 +173,14 @@ export default defineComponent({
                 remark:"1手 1个点 1USD",  // 备注
             },
             
-            {
-                type: 'cornf',    // 类型
-                title:"cornf(玉米)",         // 标题
-                _precision:2,   //  小数位数
-                valuePriceStart: 473.67,   // 开始价
-                valuePriceOver: 468.85,   //  结束价
-                remark:"1手 1个点 1USD",  // 备注
-            },
+            // {
+            //     type: 'cornf',    // 类型
+            //     title:"cornf(玉米)",         // 标题
+            //     _precision:2,   //  小数位数
+            //     valuePriceStart: 473.67,   // 开始价
+            //     valuePriceOver: 468.85,   //  结束价
+            //     remark:"1手 1个点 1USD",  // 备注
+            // },
 
 
             { type:"line", remark:"-"},
@@ -192,14 +192,14 @@ export default defineComponent({
                 valuePriceOver: 80.370,   //  结束价
                 remark:"1手 1个点 0.001USD",  // 备注
             },
-            {
-                type: 'ngas',    // 类型
-                title:"ngas(天然气)",         // 标题
-                _precision:4,   //  小数位数
-                valuePriceStart: 2.7462,   // 开始价
-                valuePriceOver: 2.7002,   //  结束价
-                remark:"1手 1个点 0.01USD",  // 备注
-            },
+            // {
+            //     type: 'ngas',    // 类型
+            //     title:"ngas(天然气)",         // 标题
+            //     _precision:4,   //  小数位数
+            //     valuePriceStart: 2.7462,   // 开始价
+            //     valuePriceOver: 2.7002,   //  结束价
+            //     remark:"1手 1个点 0.01USD",  // 备注
+            // },
             { type:"line", remark:"-"},
             {
                 type: 'bund',    // 类型
