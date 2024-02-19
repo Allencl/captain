@@ -3,7 +3,7 @@
 
 
 
-    <v-card  elevation="12">
+    <v-card  elevation="2">
             <div style="height: 16px;"></div>
 
             <v-tabs

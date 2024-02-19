@@ -1,6 +1,6 @@
 <template>
 
-    <v-card elevation="12" max-width="763">
+    <v-card elevation="2" max-width="763">
         <v-card-text style="position: relative;">
             <p class="text-h6 text--primary">
                 <v-icon style="font-size: 18px;margin-bottom:4px;margin-right: 6px;">mdi-bell-badge</v-icon>

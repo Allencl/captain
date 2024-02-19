@@ -1,7 +1,7 @@
 <template>
     <v-card
       max-width="663"
-      elevation="12"
+      elevation="2"
     >
       <v-card-text>
         <v-icon style="font-size: 33px;margin-bottom: 22px;">mdi-sail-boat</v-icon>
