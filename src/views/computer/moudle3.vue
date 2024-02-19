@@ -304,6 +304,14 @@ export default defineComponent({
                 valuePriceOver: 158.120,   //  结束价
                 remark:"1手 0.001个点 1USD 有偏差",  // 备注
             },
+            {
+                type: 'USDJPY',    // 类型
+                title:"美元-日元",         // 标题
+                _precision:3,   //  小数位数
+                valuePriceStart: 148.350,   // 开始价
+                valuePriceOver: 146.350,   //  结束价
+                remark:"1手 0.001个点 1USD 有偏差",  // 备注
+            },
             // {
             //     type: 'AUDCAD',    // 类型
             //     title:"澳元-加元",         // 标题
@@ -417,8 +425,8 @@ export default defineComponent({
                 }
             }
 
-            // 英镑日元 欧元日元
-            if( ["EURJPY","GBPJPY"].includes(type) ){
+            // 英镑日元 欧元日元 美元日元
+            if( ["EURJPY","GBPJPY","USDJPY"].includes(type) ){
                 var _count=_count2.toFixed(3)
                 var _profit=new BigNumber(_count).multipliedBy(rate).toNumber()  // 止盈
                 record.number= new BigNumber(money).dividedBy(_count).dividedBy(1000).toNumber().toFixed(2)   // 手数
