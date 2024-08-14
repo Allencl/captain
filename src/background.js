@@ -15,6 +15,7 @@ async function createWindow() {
   const win = new BrowserWindow({
     width: 1780,
     height: 850,
+    // icon:  process.env.BASE_URL + '/public/favicon.ico', // 设置图标路径
     webPreferences: {
       
       // Use pluginOptions.nodeIntegration, leave this alone

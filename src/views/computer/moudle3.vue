@@ -184,14 +184,14 @@ export default defineComponent({
                 valuePriceOver: 15000,   //  结束价
                 remark:"1手 1个点 1USD",  // 备注
             },
-            // {
-            //     type: 'SPX500',    // 类型
-            //     title:"标普500",         // 标题
-            //     _precision:0,   //  小数位数
-            //     valuePriceStart: 4480,   // 开始价
-            //     valuePriceOver: 4470,   //  结束价
-            //     remark:"1手 1个点 1USD",  // 备注
-            // },
+            {
+                 type: 'SPX500',    // 类型
+                 title:"标普500",         // 标题
+                 _precision:0,   //  小数位数
+                 valuePriceStart: 4480,   // 开始价
+                 valuePriceOver: 4470,   //  结束价
+                 remark:"1手 1个点 1USD",  // 备注
+            },
             {
                 type: 'US30',    // 类型
                 title:"道琼斯",         // 标题
