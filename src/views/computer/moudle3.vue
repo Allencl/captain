@@ -208,23 +208,23 @@ export default defineComponent({
             //     valuePriceOver: 1910,   //  结束价
             //     remark:"1手 1个点 1USD",  // 备注
             // },
-            { type:"line", remark:"-"},
-            {
-                type: 'GER40',    // 类型
-                title:"德国40",         // 标题
-                _precision:0,   //  小数位数
-                valuePriceStart: 15810,   // 开始价
-                valuePriceOver: 15800,   //  结束价
-                remark:"1手 1个点 1USD",  // 备注
-            },
-            {
-                type: 'FH40',    // 类型
-                title:"法国40",         // 标题
-                _precision:0,   //  小数位数
-                valuePriceStart: 7210,   // 开始价
-                valuePriceOver: 7200,   //  结束价
-                remark:"1手 1个点 1USD",  // 备注
-            },
+            // { type:"line", remark:"-"},
+            // {
+            //     type: 'GER40',    // 类型
+            //     title:"德国40",         // 标题
+            //     _precision:0,   //  小数位数
+            //     valuePriceStart: 15810,   // 开始价
+            //     valuePriceOver: 15800,   //  结束价
+            //     remark:"1手 1个点 1USD",  // 备注
+            // },
+            // {
+            //     type: 'FH40',    // 类型
+            //     title:"法国40",         // 标题
+            //     _precision:0,   //  小数位数
+            //     valuePriceStart: 7210,   // 开始价
+            //     valuePriceOver: 7200,   //  结束价
+            //     remark:"1手 1个点 1USD",  // 备注
+            // },
             // {
             //     type: 'UK100',    // 类型
             //     title:"英国100",         // 标题
@@ -304,14 +304,14 @@ export default defineComponent({
                 valuePriceOver: 158.120,   //  结束价
                 remark:"1手 0.001个点 1USD 有偏差",  // 备注
             },
-            {
-                type: 'USDJPY',    // 类型
-                title:"美元-日元",         // 标题
-                _precision:3,   //  小数位数
-                valuePriceStart: 148.350,   // 开始价
-                valuePriceOver: 146.350,   //  结束价
-                remark:"1手 0.001个点 1USD 有偏差",  // 备注
-            },
+            // {
+            //     type: 'USDJPY',    // 类型
+            //     title:"美元-日元",         // 标题
+            //     _precision:3,   //  小数位数
+            //     valuePriceStart: 148.350,   // 开始价
+            //     valuePriceOver: 146.350,   //  结束价
+            //     remark:"1手 0.001个点 1USD 有偏差",  // 备注
+            // },
             // {
             //     type: 'AUDCAD',    // 类型
             //     title:"澳元-加元",         // 标题
