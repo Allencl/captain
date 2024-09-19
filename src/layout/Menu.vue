@@ -55,7 +55,7 @@
       items: [
         { text: 'home', icon: 'mdi-home-assistant' ,path:'/home' },
         { text: 'computer', icon: 'mdi-desktop-classic', path:"/computer" },
-        { text: '消息', icon: 'mdi-bell-badge', path:"/message" },
+        // { text: '消息', icon: 'mdi-bell-badge', path:"/message" },
         // { text: 'FORX', icon: 'mdi-airplane', path:"/forx" },
 
 
