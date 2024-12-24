@@ -192,14 +192,14 @@ export default defineComponent({
                  valuePriceOver: 4470,   //  结束价
                  remark:"1手 1个点 1USD",  // 备注
             },
-            {
-                type: 'US30',    // 类型
-                title:"道琼斯",         // 标题
-                _precision:0,   //  小数位数
-                 valuePriceStart: 35210,   // 开始价
-                 valuePriceOver: 35200,   //  结束价
-                remark:"1手 1个点 1USD",  // 备注
-            },
+            // {
+            //     type: 'US30',    // 类型
+            //     title:"道琼斯",         // 标题
+            //     _precision:0,   //  小数位数
+            //      valuePriceStart: 35210,   // 开始价
+            //      valuePriceOver: 35200,   //  结束价
+            //     remark:"1手 1个点 1USD",  // 备注
+            // },
             // {
             //     type: 'US2000',    // 类型
             //     title:"罗素2000",         // 标题
@@ -304,14 +304,14 @@ export default defineComponent({
                 valuePriceOver: 158.120,   //  结束价
                 remark:"1手 0.001个点 1USD 有偏差",  // 备注
             },
-            {
-                type: 'USDJPY',    // 类型
-                title:"美元-日元",         // 标题
-                _precision:3,   //  小数位数
-                valuePriceStart: 148.350,   // 开始价
-                valuePriceOver: 146.350,   //  结束价
-                remark:"1手 0.001个点 1USD 有偏差",  // 备注
-            },
+            // {
+            //     type: 'USDJPY',    // 类型
+            //     title:"美元-日元",         // 标题
+            //     _precision:3,   //  小数位数
+            //     valuePriceStart: 148.350,   // 开始价
+            //     valuePriceOver: 146.350,   //  结束价
+            //     remark:"1手 0.001个点 1USD 有偏差",  // 备注
+            // },
             // {
             //     type: 'AUDCAD',    // 类型
             //     title:"澳元-加元",         // 标题
