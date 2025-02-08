@@ -1,21 +1,127 @@
 <template>
     <v-card
-      max-width="663"
+      max-width="800"
       elevation="2"
     >
       <v-card-text>
+        <div style="height: 16px;"></div>
         <v-icon style="font-size: 33px;margin-bottom: 22px;">mdi-sail-boat</v-icon>
-        <p class="text-h4 text--primary">
+        <!-- <p class="text-h4 text--primary">
           oh captain my captain
-        </p>
+        </p> -->
+
+        <h1 style="color: rgba(0, 0, 0, .87);font-size: 22px;font-family: Roboto, sans-serif;line-height: 1.5;"> oh captain my captain </h1>
+
+
+        <div @click="changeFunc" style="cursor: pointer;z-index:11;right:18px;top:18px;position: absolute;text-align: center;display: inline-block;">
+          <div v-if="!isopen" style="display: inline-block;width:80px;height:80px;background-color:#CFD8DC;line-height: 80px;border-radius:100%;">
+            <span style="font-size: 22px;font-family: Roboto, sans-serif;line-height: 80px;color: #fff;">关闭</span>
+          </div>
+          <div v-if="isopen" style="display: inline-block;width:80px;height:80px;background-color:#81C784;line-height: 80px;border-radius:100%;">
+            <span style="font-size: 22px;font-family: Roboto, sans-serif;line-height:80px;color: #fff;">打开</span>
+          </div>
+        </div>
+
+    
+
       </v-card-text>
     </v-card>
 </template>
 <script>
+
+  import moment from 'moment'
+
+
   export default {
     data: () => ({
-
+      isopen: false
     }),
+    created(){
+
+      const that=this
+
+      const acrive = localStorage.getItem("bufferActive")
+      this.isopen= acrive=="1" ?true:false
+
+
+      this.$nextTick(()=>{
+        if(this.isopen){
+          this.initFunc()
+        }
+      })
+
+    },
+    methods:{
+      initFunc(){
+
+        const that=this
+        const { ipcRenderer } = window.require('electron');   
+        const str = moment().format('HH:mm');   
+
+
+        //清除interval定时器
+        if(window.IntervalItemRight1){
+          clearInterval(window.IntervalItemRight1)
+        }
+
+
+        window.IntervalItemRight1=setInterval(()=>{
+
+          const now = new Date();
+          const minutes = now.getMinutes();
+          const acrive = localStorage.getItem("bufferActive")
+
+
+          if( [13,28,43,58].includes(minutes) ){
+
+            // 消息推送
+            if( acrive=='1' ){
+
+              setTimeout(()=>{
+                ipcRenderer.send("notificationFunc",{
+                  time:str
+                });
+              },200)
+
+            }
+
+          }
+
+        },15000)
+
+      },
+      changeFunc(){
+
+        setTimeout(()=>{
+
+          this.isopen = !this.isopen
+
+          this.$nextTick(()=>{
+
+            localStorage.setItem("bufferActive", this.isopen?'1':'0' )
+
+            if( this.isopen ){
+              
+              setTimeout(()=>{
+                this.initFunc()
+              },200)
+
+            }else{
+
+              //清除interval定时器
+              if(window.IntervalItemRight1){
+                clearInterval(window.IntervalItemRight1)
+              }
+
+            }
+
+
+          })
+
+        },200)
+
+      }
+    }
   }
 </script>
 <style>

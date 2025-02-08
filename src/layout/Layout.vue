@@ -1,6 +1,6 @@
 <template>
   <div class="captain-layout">
-    <div class="layout-left-menu">
+    <div class="layout-left-menu" style="padding-top: 12px;padding-left:8px;padding-right: 12px;padding-bottom:8px;">
       <MoudleMenuPage />
     </div>
     <div class="layout-content">
@@ -24,6 +24,8 @@
       MoudleMenuPage
     },
     data: () => ({
+      
+      isopen: false,
 
     }),
     created(){
