@@ -22,7 +22,8 @@
           </div>
         </div>
 
-    
+      
+        <!-- <h1 @click="test1">测试1</h1> -->
 
       </v-card-text>
     </v-card>
@@ -52,6 +53,12 @@
 
     },
     methods:{
+      test1(){
+        const { ipcRenderer } = window.require('electron');   
+        ipcRenderer.send("notificationFunc",{
+          time:"13:26"
+        });
+      },
       initFunc(){
 
         const that=this
