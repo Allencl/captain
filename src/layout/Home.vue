@@ -63,7 +63,6 @@
 
         const that=this
         const { ipcRenderer } = window.require('electron');   
-        const str = moment().format('HH:mm');   
 
 
         //清除interval定时器
@@ -83,6 +82,8 @@
 
             // 消息推送
             if( acrive=='1' ){
+
+              var str = moment().format('HH:mm');   
 
               setTimeout(()=>{
                 ipcRenderer.send("notificationFunc",{
