@@ -23,7 +23,7 @@
         </div>
 
       
-        <!-- <h1 @click="test1">测试1</h1> -->
+        <!-- <h1 @click="test1">测试1</h1>  -->
 
       </v-card-text>
     </v-card>
@@ -55,8 +55,14 @@
     methods:{
       test1(){
         const { ipcRenderer } = window.require('electron');   
+        var str = moment().format('YYYY/MM/DD HH:mm:ss');   
+
+        // const now = new Date();
+
+
+
         ipcRenderer.send("notificationFunc",{
-          time:"13:26"
+          time:str
         });
       },
       initFunc(){
@@ -75,21 +81,26 @@
 
           const now = new Date();
           const minutes = now.getMinutes();
+          const _hours = now.getHours();
           const acrive = localStorage.getItem("bufferActive")
 
 
           if( [13,28,43,58].includes(minutes) ){
 
-            // 消息推送
-            if( acrive=='1' ){
+            if( _hours >=8 ){
 
-              var str = moment().format('HH:mm');   
+              // 消息推送
+              if( acrive=='1' ){
 
-              setTimeout(()=>{
-                ipcRenderer.send("notificationFunc",{
-                  time:str
-                });
-              },200)
+                var str = moment().format('YYYY/MM/DD HH:mm:ss');   
+
+                setTimeout(()=>{
+                  ipcRenderer.send("notificationFunc",{
+                    time:str
+                  });
+                },200)
+
+              }
 
             }
 

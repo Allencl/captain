@@ -48,7 +48,7 @@ async function createWindow() {
 
     new Notification({
       icon: path.join(__dirname, isDevelopment ? '../src/assets/image.png' : './image.png'  ), // icon
-      title: "captain",
+      title: "captain-"+option.time,
       body: option.time
     }).show()
 
