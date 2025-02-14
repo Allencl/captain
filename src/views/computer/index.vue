@@ -8,7 +8,7 @@
 
             <v-tabs
                 v-model="tab"
-                color="cyan"
+                color="#81C784"
                 align-tabs="center"
             >
             

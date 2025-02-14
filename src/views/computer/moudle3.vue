@@ -3,11 +3,11 @@
     <v-card class="computer-card-1">
       <v-card-text style="position: relative;">
         <p class="text-h6 text--primary">
-            <v-icon style="font-size: 18px;margin-bottom:4px;margin-right: 6px;">mdi-desktop-classic</v-icon>
+            <v-icon style="font-size: 18px;margin-bottom:4px;margin-right: 6px;color: #81C784;">mdi-desktop-classic</v-icon>
             <b>Forex</b> 
 
             <a-input-number v-model:value="money" @change="changeMoney" :min="10" :max="10000" style="margin-left:32px;" />
-            <a-tag color="#00BCD4" style="margin-left: 22px">
+            <a-tag color="#81C784" style="margin-left: 22px">
                 <template #icon>
                     <v-icon icon="mdi-bird"></v-icon>
                 </template>
@@ -51,7 +51,7 @@
                 </template>
                 <template v-if="column.key === 'computer'">
                     <strong>{{ column.title }}</strong>
-                    <v-icon color="#00BCD4" icon="mdi-desktop-classic"></v-icon>
+                    <v-icon color="#81C784" icon="mdi-desktop-classic"></v-icon>
                 </template>
             </template>
 
@@ -73,7 +73,7 @@
                 </template>
 
                 <template v-if="column.key === 'computer'">
-                    <v-btn v-if="record.type!='line'" @click="(val)=> this.valueChange(record)" density="compact" color="#00BCD4" style="color:#fff" icon="mdi-desktop-classic"></v-btn>
+                    <v-btn v-if="record.type!='line'" @click="(val)=> this.valueChange(record)" density="compact" color="#81C784" style="color:#fff" icon="mdi-desktop-classic"></v-btn>
                     <v-icon v-if="record.direction=='buy'" color="#8BC34A" icon="mdi-arrow-up-thin" size="28"></v-icon>
                     <v-icon v-if="record.direction=='sell'" color="#FF5722" icon="mdi-arrow-down-thin" size="28"></v-icon>
                 </template> 
@@ -105,44 +105,44 @@ export default defineComponent({
                 title: 'Type',
                 dataIndex: 'type',
                 key: 'type',
-                width:120
+                width:100
             },
             {
                 title: '开',
                 dataIndex: 'priceStart',
                 key: 'priceStart',
-                width:160
+                width:120
             },
             {
                 title: '止',
                 dataIndex: 'priceOver',
                 key: 'priceOver',
-                width:160
+                width:120
             },
             {
                 title: '点数',
                 dataIndex: 'count',
                 key: 'count',
-                width:130
+                width:120
             },
             {
                 title: '手数',
                 dataIndex: 'number',
                 key: 'number',
-                width:130
+                width:100
             },
             {
                 title: '止盈',
                 dataIndex: 'profit',
                 key: 'profit',
-                width:160
+                width:110
             },
 
             {
-                title: 'Computer',
+                title: 'Count',
                 dataIndex: 'computer',
                 key: 'computer',
-                width:130
+                width:100
 
             },
             {

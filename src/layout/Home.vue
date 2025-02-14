@@ -5,7 +5,7 @@
     >
       <v-card-text>
         <div style="height: 16px;"></div>
-        <v-icon style="font-size: 33px;margin-bottom: 22px;">mdi-sail-boat</v-icon>
+        <v-icon style="font-size: 33px;margin-bottom: 22px;color: #81C784;">mdi-sail-boat</v-icon>
         <!-- <p class="text-h4 text--primary">
           oh captain my captain
         </p> -->
@@ -13,7 +13,7 @@
         <h1 style="color: rgba(0, 0, 0, .87);font-size: 22px;font-family: Roboto, sans-serif;line-height: 1.5;"> oh captain my captain </h1>
 
 
-        <div @click="changeFunc" style="cursor: pointer;z-index:11;right:18px;top:18px;position: absolute;text-align: center;display: inline-block;">
+        <div @click="changeFunc" style="cursor: pointer;z-index:11;right:18px;top:32px;position: absolute;text-align: center;display: inline-block;">
           <div v-if="!isopen" style="display: inline-block;width:80px;height:80px;background-color:#CFD8DC;line-height: 80px;border-radius:100%;">
             <span style="font-size: 22px;font-family: Roboto, sans-serif;line-height: 80px;color: #fff;">关闭</span>
           </div>

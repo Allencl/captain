@@ -14,7 +14,7 @@
           v-for="(item, i) in items"
           :key="i"
           :value="item"
-          active-color="primary"
+          active-color="#81C784"
           @click="itemHandle(item)"
         >
           <template v-slot:prepend>
