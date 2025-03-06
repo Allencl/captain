@@ -43,6 +43,12 @@ async function createWindow() {
   }
 
 
+  // 图标闪烁
+  ipcMain.on('flashFrameFunction', (event,option={}) => {
+    win.flashFrame(true); // 开始闪烁图标
+  })  
+
+
   // 消息通知
   ipcMain.on('notificationFunc', (event,option={}) => {
 

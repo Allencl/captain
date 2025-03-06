@@ -95,9 +95,17 @@
                 var str = moment().format('YYYY/MM/DD HH:mm:ss');   
 
                 setTimeout(()=>{
+                  
+                  // 发消息
                   ipcRenderer.send("notificationFunc",{
                     time:str
                   });
+
+                  // 图标闪烁
+                  ipcRenderer.send("flashFrameFunction",{
+                    active:true
+                  });
+
                 },200)
 
               }
