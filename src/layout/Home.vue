@@ -91,13 +91,13 @@
             if( _hours >=8 ){
 
               // 消息推送
-              if( (acrive=='1') && (that.nowMinutes!=String(minutes)) ){
+              if( (acrive=='1') ){
 
                 var str = moment().format('YYYY/MM/DD HH:mm:ss');   
 
                 setTimeout(()=>{
 
-                  that.nowMinutes=String(minutes)
+         
                   
                   // 发消息
                   ipcRenderer.send("notificationFunc",{
@@ -117,7 +117,7 @@
 
           }
 
-        },20000)
+        },30000)
 
       },
       changeFunc(){
