@@ -35,7 +35,8 @@
 
   export default {
     data: () => ({
-      isopen: false
+      isopen: false,
+      nowMinutes:"",  
     }),
     created(){
 
@@ -90,11 +91,13 @@
             if( _hours >=8 ){
 
               // 消息推送
-              if( acrive=='1' ){
+              if( (acrive=='1') && (that.nowMinutes!=String(minutes)) ){
 
                 var str = moment().format('YYYY/MM/DD HH:mm:ss');   
 
                 setTimeout(()=>{
+
+                  that.nowMinutes=String(minutes)
                   
                   // 发消息
                   ipcRenderer.send("notificationFunc",{
@@ -114,7 +117,7 @@
 
           }
 
-        },30000)
+        },20000)
 
       },
       changeFunc(){
