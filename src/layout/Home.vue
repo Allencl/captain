@@ -86,7 +86,7 @@
           const acrive = localStorage.getItem("bufferActive")
 
 
-          if( [13,28,43,58].includes(minutes) ){
+          if( [18,38,58].includes(minutes) ){
 
             if( _hours >=8 ){
 
