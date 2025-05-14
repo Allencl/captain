@@ -156,8 +156,7 @@ export default defineComponent({
 
         // 数据
         data:[
-            { type:"line", remark:"-"},
-
+            // { type:"line", remark:"-"},
             {
                 type: 'XAUUSD',    // 类型
                 title:"黄金",         // 标题
@@ -166,14 +165,14 @@ export default defineComponent({
                 valuePriceOver: 1940,   //  结束价
                 remark:"1手 1个点 1USD",  // 备注
             },
-            // {
-            //     type: 'XAGUSD',    // 类型
-            //     title:"白银",         // 标题
-            //     _precision:3,   //  小数位数
-            //     valuePriceStart: 23.145,   // 开始价
-            //     valuePriceOver: 23.023,   //  结束价
-            //     remark:"1手 0.001个点 0.001USD",  // 备注
-            // },
+            {
+                type: 'XAGUSD',    // 类型
+                title:"白银",         // 标题
+                _precision:3,   //  小数位数
+                valuePriceStart: 23.145,   // 开始价
+                valuePriceOver: 23.023,   //  结束价
+                remark:"1手 0.001个点 0.001USD",  // 备注
+            },
             { type:"line", remark:"-"},
 
 
@@ -185,14 +184,14 @@ export default defineComponent({
                 valuePriceOver: 15000,   //  结束价
                 remark:"1手 1个点 1USD",  // 备注
             },
-            // {
-            //      type: 'SPX500',    // 类型
-            //      title:"标普500",         // 标题
-            //      _precision:0,   //  小数位数
-            //      valuePriceStart: 4480,   // 开始价
-            //      valuePriceOver: 4470,   //  结束价
-            //      remark:"1手 1个点 1USD",  // 备注
-            // },
+            {
+                 type: 'SPX500',    // 类型
+                 title:"标普500",         // 标题
+                 _precision:0,   //  小数位数
+                 valuePriceStart: 4480,   // 开始价
+                 valuePriceOver: 4470,   //  结束价
+                 remark:"1手 1个点 1USD",  // 备注
+            },
             // {
             //     type: 'US30',    // 类型
             //     title:"道琼斯",         // 标题
@@ -280,23 +279,23 @@ export default defineComponent({
                 valuePriceOver: 1.26970,   //  结束价
                 remark:"1手 0.00001个点 1USD",  // 备注
             },
-            // {
-            //     type: 'EURUSD',    // 类型
-            //     title:"欧元-美元",         // 标题
-            //     _precision:5,   //  小数位数
-            //     valuePriceStart: 1.08437,   // 开始价
-            //     valuePriceOver: 1.08076,   //  结束价
-            //     remark:"1手 0.00001个点 1USD",  // 备注
-            // },
+            {
+                type: 'EURUSD',    // 类型
+                title:"欧元-美元",         // 标题
+                _precision:5,   //  小数位数
+                valuePriceStart: 1.08437,   // 开始价
+                valuePriceOver: 1.08076,   //  结束价
+                remark:"1手 0.00001个点 1USD",  // 备注
+            },
             { type:"line", remark:"-"},
-            // {
-            //     type: 'GBPJPY',    // 类型
-            //     title:"英镑-日元",         // 标题
-            //     _precision:3,   //  小数位数
-            //     valuePriceStart: 185.026,   // 开始价
-            //     valuePriceOver: 184.140,   //  结束价
-            //     remark:"1手 0.001个点 1USD 有偏差",  // 备注
-            // },
+            {
+                type: 'GBPJPY',    // 类型
+                title:"英镑-日元",         // 标题
+                _precision:3,   //  小数位数
+                valuePriceStart: 185.026,   // 开始价
+                valuePriceOver: 184.140,   //  结束价
+                remark:"1手 0.001个点 1USD 有偏差",  // 备注
+            },
             {
                 type: 'EURJPY',    // 类型
                 title:"欧元-日元",         // 标题
@@ -338,7 +337,7 @@ export default defineComponent({
                 valuePriceOver: 370.00,   //  结束价
                 remark:"1手 1个点 1USD",  // 备注
             },
-            { type:"line", remark:"-"},
+            // { type:"line", remark:"-"},
 
 
             // {
