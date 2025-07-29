@@ -27,6 +27,32 @@
 
       </v-card-text>
     </v-card>
+
+    <div style="margin-top: 12px;"></div>
+    <v-card
+      max-width="800"
+      elevation="2"
+    >
+
+      <div class="box-1123" style="padding: 18px 16px;">
+
+        <v-btn @click="activeBtnFunc('NQ')" :color=" btnActiveList.includes('NQ') ? 'success' : '#E0E0E0'" elevation="6" stacked size="large">NQ</v-btn>
+
+        <v-btn @click="activeBtnFunc('gold')" :color=" btnActiveList.includes('gold') ? 'success' : '#E0E0E0'" elevation="6" stacked size="large">Gold</v-btn>
+
+        <v-btn @click="activeBtnFunc('usd')" :color=" btnActiveList.includes('usd') ? 'success' : '#E0E0E0'" elevation="6" stacked size="large">USD</v-btn>
+
+        <v-btn @click="activeBtnFunc('jpy')" :color=" btnActiveList.includes('jpy') ? 'success' : '#E0E0E0'" elevation="6" stacked size="large">JPY</v-btn>
+
+        <v-btn @click="activeBtnFunc('tong')" :color=" btnActiveList.includes('tong') ? 'success' : '#E0E0E0'" elevation="6" stacked size="large">铜</v-btn>
+
+
+      </div>
+
+    </v-card>
+
+
+
 </template>
 <script>
 
@@ -37,6 +63,12 @@
     data: () => ({
       isopen: false,
       nowMinutes:"",  
+
+      // 按钮组
+      btnActiveList:[
+        // "NQ","gold",'usd','jpy','tong'
+      ]
+
     }),
     created(){
 
@@ -50,6 +82,9 @@
         if(this.isopen){
           this.initFunc()
         }
+
+        // 按钮初始化
+        this.btnActiveList=JSON.parse( (localStorage.getItem("bufferBtnList6")||'[]') )
       })
 
     },
@@ -65,6 +100,25 @@
         ipcRenderer.send("notificationFunc",{
           time:str
         });
+      },
+      // 按钮切换
+      activeBtnFunc(key=""){
+
+        const _list6=JSON.parse( JSON.stringify(this.btnActiveList) )
+
+
+        let _newList6=[]
+
+        if( _list6.filter(o=>o==key).length  ){
+          _newList6=_list6.filter(o=>o!=key) 
+        }else{
+          _newList6=_list6.concat([key])
+        }
+
+        this.$nextTick(()=>{
+          this.btnActiveList=_newList6
+          localStorage.setItem("bufferBtnList6", JSON.stringify(_newList6) )
+        })
       },
       initFunc(){
 
@@ -162,4 +216,9 @@
   position: absolute;
   width: 100%;
 }
+
+.box-1123 .v-btn{
+  margin-right: 22px;
+}
+
 </style>
