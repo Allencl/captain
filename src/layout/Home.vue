@@ -34,18 +34,21 @@
       elevation="2"
     >
 
-      <div class="box-1123" style="padding: 18px 16px;">
+      <div class="btn-box-1123" style="padding: 18px 16px;">
 
-        <v-btn @click="activeBtnFunc('NQ')" :color=" btnActiveList.includes('NQ') ? 'success' : '#E0E0E0'" elevation="6" stacked size="large">NQ</v-btn>
-
-        <v-btn @click="activeBtnFunc('gold')" :color=" btnActiveList.includes('gold') ? 'success' : '#E0E0E0'" elevation="6" stacked size="large">Gold</v-btn>
-
-        <v-btn @click="activeBtnFunc('usd')" :color=" btnActiveList.includes('usd') ? 'success' : '#E0E0E0'" elevation="6" stacked size="large">USD</v-btn>
-
-        <v-btn @click="activeBtnFunc('jpy')" :color=" btnActiveList.includes('jpy') ? 'success' : '#E0E0E0'" elevation="6" stacked size="large">JPY</v-btn>
-
-        <v-btn @click="activeBtnFunc('tong')" :color=" btnActiveList.includes('tong') ? 'success' : '#E0E0E0'" elevation="6" stacked size="large">铜</v-btn>
-
+        <div v-for="(o,i) in btnActiveList" :key="i" :class="`li-223 color-${o.active}`">
+          <p @click="topClickFunc('text',o)">{{ o.lable }}</p>
+          <v-icon
+            @click="topClickFunc('top',o)"
+            class="icon-up"
+            icon="mdi-arrow-top-right-thick"
+          ></v-icon>
+          <v-icon
+            @click="topClickFunc('bottom',o)"
+            class="icon-down"
+            icon="mdi-arrow-bottom-right-thick"
+          ></v-icon>
+        </div>
 
       </div>
 
@@ -64,9 +67,30 @@
       isopen: false,
       nowMinutes:"",  
 
+
+    
       // 按钮组
       btnActiveList:[
-        // "NQ","gold",'usd','jpy','tong'
+        {
+          lable:"NQ", 
+          active:"0"
+        },
+        {
+          lable:"Gold", 
+          active:"0"
+        },
+        {
+          lable:"USD", 
+          active:"0"
+        },
+        {
+          lable:"JPY", 
+          active:"0"
+        },
+        {
+          lable:"铜", 
+          active:"0"
+        }
       ]
 
     }),
@@ -84,7 +108,10 @@
         }
 
         // 按钮初始化
-        this.btnActiveList=JSON.parse( (localStorage.getItem("bufferBtnList6")||'[]') )
+        const _bufferBtnList6=JSON.parse( (localStorage.getItem("bufferBtnList6")||'[]') )
+        if(_bufferBtnList6.length){
+          this.btnActiveList=_bufferBtnList6
+        }
       })
 
     },
@@ -101,25 +128,56 @@
           time:str
         });
       },
-      // 按钮切换
-      activeBtnFunc(key=""){
+      // 按钮切换 上
+      topClickFunc(active,item){
 
-        const _list6=JSON.parse( JSON.stringify(this.btnActiveList) )
+        let _list6=JSON.parse( JSON.stringify(this.btnActiveList) )
+        let _newList=[]
 
+        switch (active) {
+          case "top":
+            _newList=_list6.map(o=>{
+              if( o.lable == item.lable ){
+                o.active="1"
+              }
 
-        let _newList6=[]
+              return o
+            })
+            break;
 
-        if( _list6.filter(o=>o==key).length  ){
-          _newList6=_list6.filter(o=>o!=key) 
-        }else{
-          _newList6=_list6.concat([key])
+          case "bottom":
+            _newList=_list6.map(o=>{
+              if( o.lable == item.lable ){
+                o.active="2"
+              }
+
+              return o
+            })
+            break;
+
+          case "text":
+            _newList=_list6.map(o=>{
+              if( o.lable == item.lable ){
+                o.active="0"
+              }
+
+              return o
+            })
+            break;
+
+        
+          default:
+            break;
         }
 
+
         this.$nextTick(()=>{
-          this.btnActiveList=_newList6
-          localStorage.setItem("bufferBtnList6", JSON.stringify(_newList6) )
+          this.btnActiveList=_newList
+          localStorage.setItem("bufferBtnList6", JSON.stringify(_newList) )
         })
+
       },
+
       initFunc(){
 
         const that=this
@@ -209,7 +267,7 @@
     }
   }
 </script>
-<style>
+<style lang="scss">
 .v-card--reveal {
   bottom: 0;
   opacity: 1 !important;
@@ -219,6 +277,82 @@
 
 .box-1123 .v-btn{
   margin-right: 22px;
+}
+
+.btn-box-1123{
+
+  .li-223{
+    position: relative;
+    display: inline-block;
+    width: 120px;
+    height: 80px;
+    margin-right: 16px;
+
+    box-shadow: 0 2px 4px -1px var(--v-shadow-key-umbra-opacity, rgba(0, 0, 0, .2)), 0 4px 5px 0 var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, .14)), 0 1px 10px 0 var(--v-shadow-key-ambient-opacity, rgba(0, 0, 0, .12)) !important;
+    border-radius: 6px;
+
+    background-color: #F5F5F5;
+
+    &.color-1{
+
+      background-color: rgba(76,175,80,0.6);
+
+      p{
+        color: #fff;
+      }
+
+      .icon-up{
+        color: rgba(76,175,80,1);
+      }
+
+    }
+
+
+    &.color-2{
+
+      background-color: rgba(255,152,0,0.6);
+      p{
+        color: #fff;
+      }
+
+      .icon-down{
+        color: rgba(255,152,0,1);
+      }
+
+    }
+
+    p{
+      font-size: 22px;
+      font-family: sans-serif;
+      font-weight: 600;
+      padding-left: 12px;
+      padding-top: 24px;
+      color: #424242;
+      cursor: pointer;
+    }
+
+    .icon-up{
+      position: absolute;
+      top: 6px;
+      right: 4px;
+      z-index: 9;
+      font-size: 32px;
+      cursor: pointer;
+      color: #BDBDBD;
+    }
+
+    .icon-down{
+      position: absolute;
+      bottom: 6px;
+      right: 4px;
+      z-index: 9;
+      font-size: 32px;
+      cursor: pointer;
+      color: #BDBDBD;
+
+    }
+  }
+
 }
 
 </style>
