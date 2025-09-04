@@ -28,7 +28,7 @@
       </v-card-text>
     </v-card>
 
-    <div style="margin-top: 12px;"></div>
+    <!-- <div style="margin-top: 12px;"></div>
     <v-card
       max-width="800"
       elevation="2"
@@ -52,7 +52,7 @@
 
       </div>
 
-    </v-card>
+    </v-card> -->
 
 
 
