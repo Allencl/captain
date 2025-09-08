@@ -67,7 +67,7 @@
       isopen: false,
       nowMinutes:"",  
 
-
+      bufferText:"",  // 
     
       // 按钮组
       btnActiveList:[
@@ -199,7 +199,7 @@
 
           
           // if( [13,28,43,58].includes(minutes) ){
-          if( [28,58].includes(minutes) ){
+          if( [29,59].includes(minutes) ){
 
             if( _hours >=8 ){
 
@@ -208,21 +208,25 @@
 
                 var str = moment().format('YYYY/MM/DD HH:mm:ss');   
 
-                setTimeout(()=>{
+                if( that.bufferText != str ){
 
-         
-                  
-                  // 发消息
-                  ipcRenderer.send("notificationFunc",{
-                    time:str
-                  });
+                  setTimeout(()=>{
+                    
+                    // 发消息
+                    ipcRenderer.send("notificationFunc",{
+                      time:str
+                    });
 
-                  // 图标闪烁
-                  ipcRenderer.send("flashFrameFunction",{
-                    active:true
-                  });
+                    // 图标闪烁
+                    ipcRenderer.send("flashFrameFunction",{
+                      active:true
+                    });
 
-                },200)
+                    that.bufferText=str
+
+                  },200)                  
+
+                }
 
               }
 
@@ -230,7 +234,7 @@
 
           }
 
-        },30000)
+        },20000)
 
       },
       changeFunc(){
