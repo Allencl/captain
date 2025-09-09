@@ -114,6 +114,14 @@
       })
 
     },
+    beforeDestroy() {
+
+      //清除interval定时器
+      if(window.IntervalItemRight1){
+        clearInterval(window.IntervalItemRight1)
+      }
+
+    },
     methods:{
       test1(){
         // const { ipcRenderer } = window.require('electron');   
@@ -231,7 +239,7 @@
 
           }
 
-        },20000)
+        },10000)
 
       },
       changeFunc(){
