@@ -23,7 +23,6 @@
         </div>
 
       
-        <!-- <h1 @click="test1">测试1</h1>  -->
 
       </v-card-text>
     </v-card>
@@ -117,16 +116,12 @@
     },
     methods:{
       test1(){
-        const { ipcRenderer } = window.require('electron');   
-        var str = moment().format('YYYY/MM/DD HH:mm:ss');   
+        // const { ipcRenderer } = window.require('electron');   
+        // var str = moment().format('YYYY/MM/DD HH:mm:ss');   
 
-        // const now = new Date();
-
-
-
-        ipcRenderer.send("notificationFunc",{
-          time:str
-        });
+        // ipcRenderer.send("notificationFunc",{
+        //   time:str
+        // });
       },
       // 按钮切换 上
       topClickFunc(active,item){
@@ -206,11 +201,15 @@
               // 消息推送
               if( (acrive=='1') ){
 
-                var str = moment().format('YYYY/MM/DD HH:mm:ss');   
+                var str223 = moment().format('YYYY/MM/DD HH:mm');   
+                var str = String(str223)
 
-                if( that.bufferText != str ){
+
+                if( that.bufferText!=str ){
 
                   setTimeout(()=>{
+
+                    that.bufferText=str
                     
                     // 发消息
                     ipcRenderer.send("notificationFunc",{
@@ -221,8 +220,6 @@
                     ipcRenderer.send("flashFrameFunction",{
                       active:true
                     });
-
-                    that.bufferText=str
 
                   },200)                  
 
