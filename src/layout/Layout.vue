@@ -49,7 +49,7 @@
   }
 
   .layout-content{
-    padding: 12px 12px 120px 12px;
+    padding: 12px 12px 120px 18px;
     // height: 100vh;
     overflow: auto;
     background-color: #fff;
