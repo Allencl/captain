@@ -10,6 +10,8 @@
           oh captain my captain
         </p> -->
 
+        <!-- <button @click="playBuguAudio">ces111</button> -->
+
         <h1 style="color: rgba(0, 0, 0, .87);font-size: 22px;font-family: Roboto, sans-serif;line-height: 1.5;"> oh captain my captain </h1>
 
 
@@ -314,6 +316,9 @@
                       active:true
                     });
 
+                    // 播放声音
+                    that.playBuguAudio()
+
                   },200)                  
 
                 }
@@ -518,6 +523,17 @@
         setTimeout(()=>{
           this.chipList=this.chipList.filter(o=>o.id!=item.id)
         },200)
+      },
+      // 播放 bugu
+      async playBuguAudio(){
+
+          try {
+            const audioUrl = require(`@/map3/布谷鸟.wav`)
+            await this.playAudio(audioUrl)
+          } catch (error) {
+            message.error(`布谷鸟.wav播放失败`);
+          }
+
       }
     }
   }
