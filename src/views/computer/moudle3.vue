@@ -288,14 +288,14 @@ export default defineComponent({
                 remark:"1手 0.00001个点 1USD",  // 备注
             },
             { type:"line", remark:"-"},
-            {
-                type: 'GBPJPY',    // 类型
-                title:"英镑-日元",         // 标题
-                _precision:3,   //  小数位数
-                valuePriceStart: 185.026,   // 开始价
-                valuePriceOver: 184.140,   //  结束价
-                remark:"1手 0.001个点 1USD 有偏差",  // 备注
-            },
+            // {
+            //     type: 'GBPJPY',    // 类型
+            //     title:"英镑-日元",         // 标题
+            //     _precision:3,   //  小数位数
+            //     valuePriceStart: 185.026,   // 开始价
+            //     valuePriceOver: 184.140,   //  结束价
+            //     remark:"1手 0.001个点 1USD 有偏差",  // 备注
+            // },
             {
                 type: 'EURJPY',    // 类型
                 title:"欧元-日元",         // 标题
@@ -304,14 +304,14 @@ export default defineComponent({
                 valuePriceOver: 158.120,   //  结束价
                 remark:"1手 0.001个点 1USD 有偏差",  // 备注
             },
-            // {
-            //     type: 'USDJPY',    // 类型
-            //     title:"美元-日元",         // 标题
-            //     _precision:3,   //  小数位数
-            //     valuePriceStart: 148.350,   // 开始价
-            //     valuePriceOver: 146.350,   //  结束价
-            //     remark:"1手 0.001个点 1USD 有偏差",  // 备注
-            // },
+            {
+                type: 'USDJPY',    // 类型
+                title:"美元-日元",         // 标题
+                _precision:3,   //  小数位数
+                valuePriceStart: 148.350,   // 开始价
+                valuePriceOver: 146.350,   //  结束价
+                remark:"1手 0.001个点 1USD 有偏差",  // 备注
+            },
             // {
             //     type: 'AUDCAD',    // 类型
             //     title:"澳元-加元",         // 标题
