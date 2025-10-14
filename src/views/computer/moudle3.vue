@@ -479,7 +479,7 @@ export default defineComponent({
                 }
             }
 
-            // 恒生科技指数 
+            // 恒生科技指数 111
             if( ["HSTEC"].includes(type) ){
 
                 var _count=_count2
