@@ -302,7 +302,7 @@
 
             // 播放 音频
             await this.playAudio(key)
-
+            // message.success(`audio: ${key}播放！`);
 
             // 删除 tags
             if(_ids){
@@ -521,6 +521,14 @@
 
 
             this.chipList=  this.chipList.concat([_json])
+            
+
+            this.$nextTick(()=>{
+              setTimeout(()=>{
+                this.valueAudio=[]
+                this.valueNumberText=1
+              },300)
+            })
 
 
             this.$nextTick(()=>{
