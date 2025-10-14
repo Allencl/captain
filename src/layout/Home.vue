@@ -537,6 +537,11 @@
               setTimeout(()=>{
 
                 if( this.chipList.filter(o=>o.id==_json.id).length ){
+
+
+                  message.success(`计时播报: [${(_json.time)}分钟]: ${_json.text}`);
+
+                  // 语音
                   this.setTimeAudio(_json.value,_json.id)
                 }else{
                   //console.log("已经被删了")
@@ -558,7 +563,7 @@
         const { ipcRenderer } = window.require('electron');   
 
         ipcRenderer.send("getAppPathFunc",{
-          filePath: list.map(o=> `audio/${o}` ),
+          filePath: ["map3/a.wav"].concat( list.map(o=> `audio/${o}` ) ),
           idKey:id
         });
 
