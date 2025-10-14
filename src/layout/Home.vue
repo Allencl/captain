@@ -538,9 +538,7 @@
 
                 if( this.chipList.filter(o=>o.id==_json.id).length ){
 
-
-                  message.success(`计时播报: [${(_json.time)}分钟]: ${_json.text}`);
-
+                  
                   // 语音
                   this.setTimeAudio(_json.value,_json.id)
                 }else{
