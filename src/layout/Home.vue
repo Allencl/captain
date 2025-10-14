@@ -258,60 +258,80 @@
         }
       })
 
-      this.$nextTick(()=>{
+    },
+    mounted() {
+      // 1. 获取 ipcRenderer
+      const { ipcRenderer } = window.require('electron');
 
-        const { ipcRenderer } = window.require('electron');   
+      // 2. 定义回调函数（必须挂到 this 上，确保引用一致）
+      this.handleReply = (event, data) => {
+        this.forEachHandle(data)
+        // 你的业务逻辑
+      };
 
-        ipcRenderer.on('reply-from-main', async (event, data) => {
+      // 3. 注册监听器
+      ipcRenderer.on('reply-from-main', this.handleReply);
+    },
+    beforeDestroy() {
 
-          for (const key of data.pathList ) {
+        //清除interval定时器
+        if(window.IntervalItemRight1){
+          clearInterval(window.IntervalItemRight1)
+        }
 
-            try {
+        // 4. 移除监听器（关键！）
+        const { ipcRenderer } = window.require('electron');
+        if (this.handleReply) {
+          ipcRenderer.removeListener('reply-from-main', this.handleReply);
+        }
 
-              // 播放 音频
-              await this.playAudio(key)
 
-              if(data.idKey){
-                setTimeout(()=>{
-                  that.closeTagHandle({
-                    id: data.idKey
-                  })
-                },1000)
-              }
 
-            } catch (error) {
-              message.error(`[@/audio/${key}]播放失败`);
+    },
+    methods:{
+      // 循环播放
+      async forEachHandle(option={}){
 
-              if(data.idKey){
-                setTimeout(()=>{
-                  that.closeTagHandle({
-                    id: data.idKey
-                  })
-                },1000)
-              }
+        const _list6=option.pathList
+        const _ids=option.idKey
 
+
+        for (const key of _list6 ) {
+
+          try {
+
+            // 播放 音频
+            await this.playAudio(key)
+
+
+            // 删除 tags
+            if(_ids){
+              setTimeout(()=>{
+                this.closeTagHandle({
+                  id: _ids
+                })
+              },1000)
+            }
+
+
+          } catch (error) {
+
+            message.error(`[@/audio/${key}]播放失败`);
+
+            // 删除 tags
+            if(_ids){
+              setTimeout(()=>{
+                this.closeTagHandle({
+                  id: _ids
+                })
+              },1000)
             }
 
           }
 
+        }
 
-
-        });
-
-      })
-
-
-
-    },
-    beforeDestroy() {
-
-      //清除interval定时器
-      if(window.IntervalItemRight1){
-        clearInterval(window.IntervalItemRight1)
-      }
-
-    },
-    methods:{
+      },
       test1(){
         // const { ipcRenderer } = window.require('electron');   
         // var str = moment().format('YYYY/MM/DD HH:mm:ss');   
@@ -529,7 +549,7 @@
         const { ipcRenderer } = window.require('electron');   
 
         ipcRenderer.send("getAppPathFunc",{
-          filePath: list,
+          filePath: list.map(o=> `audio/${o}` ),
           idKey:id
         });
 
@@ -543,12 +563,12 @@
       // 播放 bugu
       async playBuguAudio(){
 
-          const { ipcRenderer } = window.require('electron');   
+        const { ipcRenderer } = window.require('electron');   
 
-          ipcRenderer.send("getAppPathFunc",{
-            filePath: ["map3/a.wav"],
-            idKey:""
-          });
+        ipcRenderer.send("getAppPathFunc",{
+          filePath: ["map3/a.wav"],
+          idKey:""
+        });
 
       },
       // 签到

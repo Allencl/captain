@@ -16,7 +16,7 @@ async function createWindow() {
   // Create the browser window.
   const win = new BrowserWindow({
     width: 1320,
-    height: 850,
+    height: 910,
     autoHideMenuBar:true,   // 隐藏菜单
 
     // icon:  process.env.BASE_URL + '/public/favicon.ico', // 设置图标路径
