@@ -17,7 +17,7 @@ const routes = [
     path: '/computer',
     name: 'computer',
     meta:{tittle:"计算",keepAlive:true},
-    component: () => import('@/views/computer/index.vue')
+    component: () => import('@/layout/Computer.vue')
   },
   {
     path: '/message',
