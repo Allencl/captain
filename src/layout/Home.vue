@@ -1,6 +1,6 @@
 <template>
     <v-card
-      max-width="800"
+      max-width="1100"
       elevation="2"
     >
       <v-card-text>
@@ -86,7 +86,7 @@
 
     <div style="height: 18px;"></div>
     <v-card
-      max-width="800"
+      max-width="1100"
       elevation="2"
     >
       <v-card-text>
@@ -96,7 +96,8 @@
 
 
         <v-row :gutters="8">
-          <v-col cols="9">
+
+          <v-col cols="10">
  
 
 
@@ -107,7 +108,7 @@
               placeholder="音频"
               size="large"
               bordered
-              :maxTagCount="2"
+              :maxTagCount="4"
               clearable
             >
               <a-select-option v-for="(o,i) in itemsAudio" :key="i" :value="o">{{ o }}</a-select-option>
@@ -115,7 +116,7 @@
 
 
           </v-col>
-          <v-col cols="3">
+          <v-col cols="2">
             <a-input-number 
               v-model:value="valueNumberText" 
               prefix="🕗"
