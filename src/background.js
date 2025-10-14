@@ -22,6 +22,8 @@ async function createWindow() {
     // icon:  process.env.BASE_URL + '/public/favicon.ico', // 设置图标路径
     webPreferences: {
 
+      webSecurity: false,  // 
+
       nodeIntegration: true,  // 开启nodec环境
       contextIsolation: false
       
@@ -57,6 +59,36 @@ async function createWindow() {
       title: "captain-"+option.time,
       body: option.time
     }).show()
+
+  })
+
+
+  // 获取App path
+  ipcMain.on('getAppPathFunc', (event,option={}) => {
+
+      let _list33=[]
+
+      for (let index = 0; index < option.filePath.length; index++) {
+
+        if(isDevelopment){
+
+          _list33.push( option.filePath[index] )
+
+        }else{
+
+          // 拼接 public/map3/a.wav 在打包后的实际路径
+          const audioPath = path.join(__dirname, './'+ option.filePath[index]  ) 
+          _list33.push( audioPath )
+        }
+
+      }
+    
+      win.webContents.send('reply-from-main', {
+        pathList:_list33,
+        idKey: option.idKey
+      });
+      
+
 
   })
 

@@ -15,13 +15,42 @@
         <h1 style="color: rgba(0, 0, 0, .87);font-size: 22px;font-family: Roboto, sans-serif;line-height: 1.5;"> oh captain my captain </h1>
 
 
-        <div @click="changeFunc" style="cursor: pointer;z-index:11;right:18px;top:32px;position: absolute;text-align: center;display: inline-block;">
-          <div v-if="!isopen" style="display: inline-block;width:80px;height:80px;background-color:#CFD8DC;line-height: 80px;border-radius:100%;">
+        <div style="cursor: pointer;z-index:11;right:108px;top:32px;position: absolute;" title="签到" >
+          <v-btn 
+            icon="mdi-sail-boat" 
+            size="x-large"
+            variant="tonal"
+            :color=" qiandaoAction? '#5865f2':'#78909C'"
+            @click="qiandaoHandle"
+          ></v-btn>
+        </div>
+
+        <div @click="changeFunc" :title="isopen?'闹钟开':'闹钟关'" style="cursor: pointer;z-index:11;right:18px;top:32px;position: absolute;text-align: center;display: inline-block;">
+          <!-- <div v-if="!isopen" style="display: inline-block;width:80px;height:80px;background-color:#CFD8DC;line-height: 80px;border-radius:100%;">
             <span style="font-size: 22px;font-family: Roboto, sans-serif;line-height: 80px;color: #fff;">关闭</span>
-          </div>
-          <div v-if="isopen" style="display: inline-block;width:80px;height:80px;background-color:#81C784;line-height: 80px;border-radius:100%;">
+          </div> -->
+
+          <v-btn 
+            v-if="!isopen"
+            icon="mdi-close" 
+            size="x-large"
+            variant="tonal"
+            color="#78909C"
+          ></v-btn>
+
+          <!-- <div v-if="isopen" style="display: inline-block;width:80px;height:80px;background-color:#81C784;line-height: 80px;border-radius:100%;">
             <span style="font-size: 22px;font-family: Roboto, sans-serif;line-height:80px;color: #fff;">打开</span>
-          </div>
+          </div> -->
+
+          <v-btn 
+            v-if="isopen"
+            icon="mdi-check-all" 
+            size="x-large"
+            variant="tonal"
+            color="#2E7D32"
+          ></v-btn>
+
+
         </div>
 
       
@@ -66,20 +95,27 @@
         <v-icon style="font-size: 33px;margin-bottom: 22px;color: #FFB74D;">mdi-bullhorn</v-icon>
 
 
-        <v-row :gutters="18">
-          <v-col cols="8">
-            <v-select
-              v-model="valueAudio"
-              :items="itemsAudio"
-              label="音频"
-              chips
-              multiple
-              rounded
-              clearable
+        <v-row :gutters="8">
+          <v-col cols="9">
+ 
 
-            ></v-select>
+
+            <a-select
+              v-model:value="valueAudio"
+              mode="tags"
+              style="width: 100%"
+              placeholder="音频"
+              size="large"
+              bordered
+              :maxTagCount="2"
+              clearable
+            >
+              <a-select-option v-for="(o,i) in itemsAudio" :key="i" :value="o">{{ o }}</a-select-option>
+            </a-select>
+
+
           </v-col>
-          <v-col cols="4">
+          <v-col cols="3">
             <a-input-number 
               v-model:value="valueNumberText" 
               prefix="🕗"
@@ -87,13 +123,13 @@
               size="large"
               :precision="0"
               :step="5"
-              style="width:120px;position: relative;top:-2px;"
+              style="width:100px;position: relative;top:-11px;"
             />
 
             <v-btn 
               icon="mdi-plus" 
               color="#81C784"
-              style="position:relative;top:3px;left:26px;color:#fff;"
+              style="position:relative;top:-5px;left:6px;color:#fff;"
               @click="playAllAudio"
             ></v-btn>
 
@@ -134,10 +170,13 @@
 <script>
 
   import moment from 'moment'
-  import { message } from 'ant-design-vue';
+  import { message } from 'ant-design-vue'
+
 
   export default {
     data: () => ({
+
+      qiandaoAction:false,  // 签到
 
       valueNumberText: 5,
       isopen: false,
@@ -174,7 +213,26 @@
 
       // 播放音频
       valueAudio: [],
-      itemsAudio: [],
+      itemsAudio: [
+
+        "黄金.wav",
+        "白银.wav",
+
+        "纳斯达克.wav",
+        "标普500.wav",
+
+        "英镑兑美元.wav",
+        "欧元兑美元.wav",
+
+        "美元兑日元.wav",
+        "欧元兑日元.wav",
+
+        "美铜.wav",
+        "恒生科技指数.wav",
+
+        "日经225.wav"
+
+      ],
 
     }),
     created(){
@@ -187,7 +245,7 @@
 
       this.$nextTick(()=>{
 
-        this.getAllAudio()
+ 
 
         if(this.isopen){
           this.initFunc()
@@ -199,6 +257,50 @@
           this.btnActiveList=_bufferBtnList6
         }
       })
+
+      this.$nextTick(()=>{
+
+        const { ipcRenderer } = window.require('electron');   
+
+        ipcRenderer.on('reply-from-main', async (event, data) => {
+
+          for (const key of data.pathList ) {
+
+            try {
+
+              // 播放 音频
+              await this.playAudio(key)
+
+              if(data.idKey){
+                setTimeout(()=>{
+                  that.closeTagHandle({
+                    id: data.idKey
+                  })
+                },1000)
+              }
+
+            } catch (error) {
+              message.error(`[@/audio/${key}]播放失败`);
+
+              if(data.idKey){
+                setTimeout(()=>{
+                  that.closeTagHandle({
+                    id: data.idKey
+                  })
+                },1000)
+              }
+
+            }
+
+          }
+
+
+
+        });
+
+      })
+
+
 
     },
     beforeDestroy() {
@@ -363,80 +465,6 @@
         },200)
 
       },
-      // 获取所有音频
-      getAllAudio(){
-
-        const audioContext = require.context('@/audio', false, /\.(mp3|wav|ogg)$/)
-
-        // 获取所有文件名（带扩展名）
-        const filenames = audioContext.keys().map(key => {
-          // key 格式如：'./提示音.mp3'
-          return key.substring(2) // 去掉 './'
-        })
-
-        const _list=filenames.map(o=>{
-
-          let _text=""
-          switch (o) {
-
-            case "黄金.wav":
-              _text="a黄金.wav"
-              break;
-            case "白银.wav":
-              _text="b白银.wav"
-              break;
-
-            case "纳斯达克.wav":
-              _text="c纳斯达克.wav"
-              break;
-            case "标普500.wav":
-              _text="d标普500.wav"
-              break; 
-
-            case "英镑兑美元.wav":
-              _text="e英镑兑美元.wav"
-              break;    
-            case "欧元兑美元.wav":
-              _text="f欧元兑美元.wav"
-              break;   
-
-            case "美元兑日元.wav":
-              _text="g美元兑日元.wav"
-              break;  
-            case "欧元兑日元.wav":
-              _text="h欧元兑日元.wav"
-              break;    
-
-            case "美铜.wav":
-              _text="i美铜.wav"
-              break; 
-            case "恒生科技指数.wav":
-              _text="j恒生科技指数.wav"
-              break; 
-
-            case "日经225.wav":
-              _text="k日经225.wav"
-              break; 
-
-          
-            default:
-              break;
-          }
-
-          return _text
-        })
-        .sort((a, b) => a.localeCompare(b, 'en', { sensitivity: 'base' }))
-        .map(k=>{
-          return k.substring(1);
-        })
-
-
-        this.$nextTick(()=>{
-          this.itemsAudio=_list||[]
-        })
-
-
-      },
       // 播放单个音频，返回 Promise
       playAudio(src) {
         return new Promise((resolve, reject) => {
@@ -498,24 +526,12 @@
       // 定时器 播放
       async setTimeAudio(list=[],id){
 
+        const { ipcRenderer } = window.require('electron');   
 
-        for (const key of list) {
-
-          try {
-            const audioUrl = require(`@/audio/${key}`)
-            await this.playAudio(audioUrl)
-            
-            setTimeout(()=>{
-              this.closeTagHandle({
-                id:id
-              })
-            },1000)
-
-          } catch (error) {
-            message.error(`[@/audio/${key}]播放失败`);
-          }
-
-        }
+        ipcRenderer.send("getAppPathFunc",{
+          filePath: list,
+          idKey:id
+        });
 
       },
       // 删除 音频 tags
@@ -527,14 +543,28 @@
       // 播放 bugu
       async playBuguAudio(){
 
-          try {
-            const audioUrl = require(`@/map3/布谷鸟.wav`)
-            await this.playAudio(audioUrl)
-          } catch (error) {
-            message.error(`布谷鸟.wav播放失败`);
-          }
+          const { ipcRenderer } = window.require('electron');   
 
-      }
+          ipcRenderer.send("getAppPathFunc",{
+            filePath: ["map3/a.wav"],
+            idKey:""
+          });
+
+      },
+      // 签到
+      async qiandaoHandle(){
+
+        var str223 = moment().format('YYYY-MM-DD HH:mm');   
+        var str = String(str223)
+
+        message.success(`captain ${str}`);
+
+        this.qiandaoAction=true
+
+        this.playBuguAudio()
+
+
+      },
     }
   }
 </script>

@@ -174,8 +174,6 @@ export default defineComponent({
                 remark:"1手 0.001个点 0.001USD",  // 备注
             },
             { type:"line", remark:"-"},
-
-
             {
                 type: 'NA100',    // 类型
                 title:"纳斯达克100",         // 标题
@@ -338,6 +336,16 @@ export default defineComponent({
                 valuePriceOver: 370.00,   //  结束价
                 remark:"1手 1个点 1USD",  // 备注
             },
+
+            {
+                type: 'HSTEC',    // 类型
+                title:"恒生科技指数",         // 标题
+                _precision:0,   //  小数位数
+                valuePriceStart: 6122,   // 开始价
+                valuePriceOver: 6322,   //  结束价
+                remark:"1手 10个点 1USD",  // 备注
+            }
+
             // { type:"line", remark:"-"},
 
 
@@ -469,6 +477,25 @@ export default defineComponent({
                     record.direction='sell'
                     record.profit= new BigNumber(_valuePriceStart).minus(_profit).toNumber()  // 止盈
                 }
+            }
+
+            // 恒生科技指数 
+            if( ["HSTEC"].includes(type) ){
+
+                var _count=_count2
+                var _profit=new BigNumber(_count).multipliedBy(rate).toNumber()  // 止盈
+                record.number= (new BigNumber(money).dividedBy(_count).toNumber().toFixed(1) ) *10 // 手数
+                record.count=_count  // 点数
+ 
+                // 多 | 空
+                if(_valuePriceStart>_valuePriceOver){
+                    record.direction='buy'   
+                    record.profit= new BigNumber(_valuePriceStart).plus(_profit).toNumber()   // 止盈
+                }else{
+                    record.direction='sell'
+                    record.profit= new BigNumber(_valuePriceStart).minus(_profit).toNumber()  // 止盈
+                }
+
             }
             
 
