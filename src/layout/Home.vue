@@ -110,6 +110,7 @@
               bordered
               :maxTagCount="4"
               clearable
+              :listHeight="369"
             >
               <a-select-option v-for="(o,i) in itemsAudio" :key="i" :value="o">{{ o }}</a-select-option>
             </a-select>
