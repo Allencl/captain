@@ -413,7 +413,7 @@
 
           
           // if( [13,28,43,58].includes(minutes) ){
-          if( [29,59].includes(minutes) ){
+          if( [14,29,44,59].includes(minutes) ){
 
             if( _hours >=8 ){
 
