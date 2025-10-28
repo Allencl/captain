@@ -29,23 +29,30 @@
     }),
     created(){
 
+      if(this.intervalBox){
+        clearInterval(this.intervalBox)
+      }
 
-
-        this.$nextTick(()=>{
-            clearInterval(this.intervalBox)
-            this.intervalBox = setInterval(()=>{
-              const _active=localStorage.getItem("bufferSwitch001")=='true'?true:false
-              const _time= Number( localStorage.getItem("bufferNumber001")||"55" )
-              const _Minutes=new Date().getMinutes()
-              if(_Minutes==Number(_time)){
-                if(!this.showNo && _active){
-                  this.messageFunc()
-                }
-              }else{
-                this.showNo=false
-              }
-            },10000)
-        })
+      this.$nextTick(()=>{
+        this.intervalBox = setInterval(()=>{
+          const _active=localStorage.getItem("bufferSwitch001")=='true'?true:false
+          const _time= Number( localStorage.getItem("bufferNumber001")||"55" )
+          const _Minutes=new Date().getMinutes()
+          if(_Minutes==Number(_time)){
+            if(!this.showNo && _active){
+              this.messageFunc()
+            }
+          }else{
+            this.showNo=false
+          }
+        },10000)
+      })
+    },
+    beforeDestroy() {
+      // 组件销毁前清除定时器
+      if(this.intervalBox){
+        clearInterval(this.intervalBox)
+      }
     },
     methods:{
       messageFunc(){
