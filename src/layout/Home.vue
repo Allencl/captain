@@ -254,10 +254,10 @@
         }
 
         // 按钮初始化
-        const _bufferBtnList6=JSON.parse( (localStorage.getItem("bufferBtnList6")||'[]') )
-        if(_bufferBtnList6.length){
-          this.btnActiveList=_bufferBtnList6
-        }
+        // const _bufferBtnList6=JSON.parse( (localStorage.getItem("bufferBtnList6")||'[]') )
+        // if(_bufferBtnList6.length){
+        //   this.btnActiveList=_bufferBtnList6
+        // }
       })
 
     },
