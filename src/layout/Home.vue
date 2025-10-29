@@ -26,9 +26,7 @@
         </div>
 
         <div @click="changeFunc" :title="isopen?'闹钟开':'闹钟关'" style="cursor: pointer;z-index:11;right:18px;top:32px;position: absolute;text-align: center;display: inline-block;">
-          <!-- <div v-if="!isopen" style="display: inline-block;width:80px;height:80px;background-color:#CFD8DC;line-height: 80px;border-radius:100%;">
-            <span style="font-size: 22px;font-family: Roboto, sans-serif;line-height: 80px;color: #fff;">关闭</span>
-          </div> -->
+
 
           <v-btn 
             v-if="!isopen"
@@ -38,9 +36,7 @@
             color="#78909C"
           ></v-btn>
 
-          <!-- <div v-if="isopen" style="display: inline-block;width:80px;height:80px;background-color:#81C784;line-height: 80px;border-radius:100%;">
-            <span style="font-size: 22px;font-family: Roboto, sans-serif;line-height:80px;color: #fff;">打开</span>
-          </div> -->
+
 
           <v-btn 
             v-if="isopen"
@@ -287,7 +283,8 @@
           ipcRenderer.removeListener('reply-from-main', this.handleReply);
         }
 
-
+        // localStorage.setItem("bufferActive","0")
+        // this.isopen=false
 
     },
     methods:{

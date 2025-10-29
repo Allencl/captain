@@ -31,7 +31,9 @@
 
 
     },
-
+    beforeDestroy() {
+      localStorage.setItem("bufferActive","0")
+    },
     methods:{
 
     }
