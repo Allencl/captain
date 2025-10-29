@@ -249,11 +249,6 @@
           this.initFunc()
         }
 
-        // 按钮初始化
-        // const _bufferBtnList6=JSON.parse( (localStorage.getItem("bufferBtnList6")||'[]') )
-        // if(_bufferBtnList6.length){
-        //   this.btnActiveList=_bufferBtnList6
-        // }
       })
 
     },
@@ -269,6 +264,11 @@
 
       // 3. 注册监听器
       ipcRenderer.on('reply-from-main', this.handleReply);
+
+
+      const acrive = localStorage.getItem("bufferActive")
+      this.isopen= acrive=="1" ?true:false
+
     },
     beforeDestroy() {
 
@@ -283,8 +283,7 @@
           ipcRenderer.removeListener('reply-from-main', this.handleReply);
         }
 
-        // localStorage.setItem("bufferActive","0")
-        // this.isopen=false
+
 
     },
     methods:{
@@ -406,7 +405,7 @@
           const now = new Date();
           const minutes = now.getMinutes();
           const _hours = now.getHours();
-          const acrive = localStorage.getItem("bufferActive")
+          const acrive = that.isopen
 
           
           // if( [13,28,43,58].includes(minutes) ){
@@ -415,7 +414,7 @@
             if( _hours >=8 ){
 
               // 消息推送
-              if( (acrive=='1') ){
+              if( acrive ){
 
                 var str223 = moment().format('YYYY/MM/DD HH:mm');   
                 var str = String(str223)
