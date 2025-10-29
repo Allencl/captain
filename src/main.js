@@ -65,7 +65,7 @@ const toastOptions={
   maxToasts: 5,
 }
 
-import VueApexCharts from "vue3-apexcharts"
+
 
 const app=createApp(App)
 .use(store)
@@ -73,13 +73,6 @@ const app=createApp(App)
 .use(vuetify)
 .use(Toast,toastOptions)
 .use(antDesignVue)
-.use(VueApexCharts)
-
-
-// mitt
-import mitt from "mitt"
-const emitter = mitt()
-app.config.globalProperties.$emitter = emitter
 
 
 
