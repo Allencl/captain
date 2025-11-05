@@ -161,7 +161,9 @@
       </v-card-text>
     </v-card>
 
-
+    <div>
+      <img :src="Image111" >
+    </div>
 
 
 </template>
@@ -173,6 +175,9 @@
 
   export default {
     data: () => ({
+
+      Image111: require("@/assets/png111.png"),
+
 
       qiandaoAction:false,  // 签到
 
