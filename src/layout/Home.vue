@@ -1,21 +1,18 @@
 <template>
+
     <v-card
       max-width="1100"
       elevation="2"
     >
       <v-card-text>
         <div style="height: 16px;"></div>
-        <v-icon style="font-size: 33px;margin-bottom: 22px;color: #81C784;">mdi-sail-boat</v-icon>
-        <!-- <p class="text-h4 text--primary">
-          oh captain my captain
-        </p> -->
 
-        <!-- <button @click="playBuguAudio">ces111</button> -->
+        <div>
+          <v-icon style="font-size: 33px;margin-bottom: 22px;color: #81C784;">mdi-sail-boat</v-icon>
+          <h1 style="position: relative;top:-6px;padding-left: 26px;display: inline-block;color: rgba(0, 0, 0, .87);font-size: 22px;font-family: Roboto, sans-serif;line-height: 1.5;"> oh captain my captain </h1>
+        </div>
 
-        <h1 style="color: rgba(0, 0, 0, .87);font-size: 22px;font-family: Roboto, sans-serif;line-height: 1.5;"> oh captain my captain </h1>
-
-
-        <div style="cursor: pointer;z-index:11;right:108px;top:32px;position: absolute;" title="签到" >
+        <div style="cursor: pointer;z-index:11;right:108px;top:20px;position: absolute;" title="签到" >
           <v-btn 
             icon="mdi-sail-boat" 
             size="x-large"
@@ -25,7 +22,7 @@
           ></v-btn>
         </div>
 
-        <div @click="changeFunc" :title="isopen?'闹钟开':'闹钟关'" style="cursor: pointer;z-index:11;right:18px;top:32px;position: absolute;text-align: center;display: inline-block;">
+        <div @click="changeFunc" :title="isopen?'闹钟开':'闹钟关'" style="cursor: pointer;z-index:11;right:18px;top:20px;position: absolute;text-align: center;display: inline-block;">
 
 
           <v-btn 
@@ -54,33 +51,7 @@
       </v-card-text>
     </v-card>
 
-    <!-- <div style="margin-top: 12px;"></div>
-    <v-card
-      max-width="800"
-      elevation="2"
-    >
-
-      <div class="btn-box-1123" style="padding: 18px 16px;">
-
-        <div v-for="(o,i) in btnActiveList" :key="i" :class="`li-223 color-${o.active}`">
-          <p @click="topClickFunc('text',o)">{{ o.lable }}</p>
-          <v-icon
-            @click="topClickFunc('top',o)"
-            class="icon-up"
-            icon="mdi-arrow-top-right-thick"
-          ></v-icon>
-          <v-icon
-            @click="topClickFunc('bottom',o)"
-            class="icon-down"
-            icon="mdi-arrow-bottom-right-thick"
-          ></v-icon>
-        </div>
-
-      </div>
-
-    </v-card> -->
-
-    <div style="height: 18px;"></div>
+    <div style="height: 12px;"></div>
     <v-card
       max-width="1100"
       elevation="2"
@@ -88,7 +59,11 @@
       <v-card-text>
 
         <div style="height: 16px;"></div>
-        <v-icon style="font-size: 33px;margin-bottom: 22px;color: #FFB74D;">mdi-bullhorn</v-icon>
+
+        <div>
+          <v-icon style="font-size: 33px;margin-bottom: 22px;color: #FFB74D;">mdi-bullhorn</v-icon>
+          <h1 style="position: relative;top:-6px;padding-left: 26px;display: inline-block;color: rgba(0, 0, 0, .87);font-size: 20px;font-family: Roboto, sans-serif;line-height: 1.5;">预警</h1>
+        </div>
 
 
         <v-row :gutters="8">
@@ -161,10 +136,22 @@
       </v-card-text>
     </v-card>
 
-    <div>
-      <img :src="Image111" >
-    </div>
+    <div style="height: 12px;"></div>
+    <v-card
+      max-width="1100"
+      elevation="2"
+    >
+      <v-card-text>
 
+        <div>
+          <v-icon style="font-size: 33px;margin-bottom: 22px;color:#AB47BC;">mdi-trending-up</v-icon>
+          <h1 style="position: relative;top:-6px;padding-left: 26px;display: inline-block;color: rgba(0, 0, 0, .87);font-size: 20px;font-family: Roboto, sans-serif;line-height: 1.5;">细嗅蔷薇</h1>
+        </div>
+
+        <img :src="Image111" >
+      
+      </v-card-text>
+    </v-card>
 
 </template>
 <script>
