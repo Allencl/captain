@@ -33,6 +33,8 @@ module.exports = defineConfig({
         nsis: {
           // oneClick: false, // 是否一键安装
           // allowToChangeInstallationDirectory: true, //是否允许修改安装目录
+          // 允许卸载时删除 AppData 目录
+          deleteAppDataOnUninstall: true, // 👈 关键！自动删除 Roaming 下的数据
           uninstallerIcon: "./public/logo.ico",//卸载时图标
         },
         win:{
