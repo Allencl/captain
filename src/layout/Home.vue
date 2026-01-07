@@ -140,6 +140,7 @@
     <v-card
       max-width="1100"
       elevation="2"
+      style="max-height:485px;"
     >
       <v-card-text>
 
