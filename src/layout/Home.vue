@@ -399,12 +399,12 @@
           const minutes = now.getMinutes();
           const _hours = now.getHours();
           const acrive = that.isopen
-
+          const _getDay=now.getDay()
           
           // if( [13,28,43,58].includes(minutes) ){
           if( [14,29,44,59].includes(minutes) ){
 
-            if( _hours >=8 ){
+            if( (_hours >=8) && (_getDay!=0) && (_getDay!=6) ){
 
               // 消息推送
               if( acrive ){
