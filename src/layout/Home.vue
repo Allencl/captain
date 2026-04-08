@@ -396,8 +396,8 @@
           const acrive = that.isopen
           const _getDay=now.getDay()
           
-          // if( [13,28,43,58].includes(minutes) ){
-          if( [4,9,14,19,24,29,34,39,44,49,54,59].includes(minutes) ){
+          // if( [4,9,14,19,24,29,34,39,44,49,54,59].includes(minutes) ){
+          if( [14,29,44,59].includes(minutes) ){
 
             if( (_hours >=8) && (_getDay!=0) && (_getDay!=6) ){
 
@@ -563,7 +563,7 @@
         const { ipcRenderer } = window.require('electron');   
 
         ipcRenderer.send("getAppPathFunc",{
-          filePath: ["map3/a.wav"],
+          filePath: ["map3/b.wav"],
           idKey:""
         });
 
