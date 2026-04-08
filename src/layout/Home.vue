@@ -68,7 +68,7 @@
 
         <v-row :gutters="8">
 
-          <v-col cols="10">
+          <v-col cols="8">
  
 
 
@@ -88,7 +88,7 @@
 
 
           </v-col>
-          <v-col cols="2">
+          <v-col cols="4">
             <a-input-number 
               v-model:value="valueNumberText" 
               prefix="🕗"
@@ -149,7 +149,7 @@
           <h1 style="position: relative;top:-6px;padding-left: 26px;display: inline-block;color: rgba(0, 0, 0, .87);font-size: 20px;font-family: Roboto, sans-serif;line-height: 1.5;">细嗅蔷薇</h1>
         </div>
 
-        <img :src="Image111" >
+        <img style="width: 100%;" :src="Image111" >
       
       </v-card-text>
     </v-card>
@@ -206,22 +206,17 @@
       valueAudio: [],
       itemsAudio: [
 
-        "黄金.wav",
         "白银.wav",
+        "黄金.wav",
 
-        "纳斯达克.wav",
         "标普500.wav",
+        "纳斯达克.wav",
 
         "英镑兑美元.wav",
         "欧元兑美元.wav",
 
-        "美元兑日元.wav",
+        "英镑兑日元.wav",
         "欧元兑日元.wav",
-
-        "美铜.wav",
-        "恒生科技指数.wav",
-
-        "日经225.wav"
 
       ],
 
@@ -402,7 +397,7 @@
           const _getDay=now.getDay()
           
           // if( [13,28,43,58].includes(minutes) ){
-          if( [14,29,44,59].includes(minutes) ){
+          if( [4,9,14,19,24,29,34,39,44,49,54,59].includes(minutes) ){
 
             if( (_hours >=8) && (_getDay!=0) && (_getDay!=6) ){
 
