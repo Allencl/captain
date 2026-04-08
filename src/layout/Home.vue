@@ -149,7 +149,7 @@
           <h1 style="position: relative;top:-6px;padding-left: 26px;display: inline-block;color: rgba(0, 0, 0, .87);font-size: 20px;font-family: Roboto, sans-serif;line-height: 1.5;">细嗅蔷薇</h1>
         </div>
 
-        <img style="width: 100%;" :src="Image111" >
+        <img style="width: 100%;max-height: 364px;" :src="Image111" >
       
       </v-card-text>
     </v-card>
