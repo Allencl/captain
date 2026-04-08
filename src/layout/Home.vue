@@ -513,7 +513,7 @@
             this.$nextTick(()=>{
               setTimeout(()=>{
                 this.valueAudio=[]
-                this.valueNumberText=1
+                this.valueNumberText=5
               },300)
             })
 
