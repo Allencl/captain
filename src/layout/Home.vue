@@ -68,7 +68,7 @@
 
         <v-row :gutters="8">
 
-          <v-col cols="8">
+          <v-col cols="7">
  
 
 
@@ -82,13 +82,14 @@
               :maxTagCount="4"
               clearable
               :listHeight="369"
+              allowClear
             >
               <a-select-option v-for="(o,i) in itemsAudio" :key="i" :value="o">{{ o }}</a-select-option>
             </a-select>
 
 
           </v-col>
-          <v-col cols="4">
+          <v-col cols="5">
             <a-input-number 
               v-model:value="valueNumberText" 
               prefix="🕗"
