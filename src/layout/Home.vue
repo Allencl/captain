@@ -4,22 +4,26 @@
       max-width="1100"
       elevation="2"
     >
-      <v-card-text>
-        <div style="height: 16px;"></div>
+      <v-card-text style="height: 100px;box-sizing: border-box;">
+        <!-- <div style="height: 16px;"></div> -->
 
         <div>
-          <v-icon style="font-size: 33px;margin-bottom: 22px;color: #81C784;">mdi-sail-boat</v-icon>
-          <h1 style="position: relative;top:-6px;padding-left: 26px;display: inline-block;color: rgba(0, 0, 0, .87);font-size: 22px;font-family: Roboto, sans-serif;line-height: 1.5;"> oh captain my captain </h1>
+          <!-- <v-icon style="font-size: 33px;margin-bottom: 22px;color: #81C784;">mdi-sail-boat</v-icon> -->
+          <img class="image-index111" :src="Image2212" alt="">
+          <h1 style="margin: 0px;position: relative;top:15px;padding-left: 12px;display: inline-block;color: rgba(0, 0, 0, .87);font-size: 26px;font-style: italic;font-family: fantasy;line-height: 1.5;"> oh captain my captain </h1>
         </div>
 
         <div style="cursor: pointer;z-index:11;right:108px;top:20px;position: absolute;" title="签到" >
-          <v-btn 
+
+          <!-- <img @click="qiandaoHandle" class="image-index232" :src="Image3312" alt=""> -->
+
+          <!-- <v-btn 
             icon="mdi-sail-boat" 
             size="x-large"
             variant="tonal"
             :color=" qiandaoAction? '#5865f2':'#78909C'"
             @click="qiandaoHandle"
-          ></v-btn>
+          ></v-btn> -->
         </div>
 
         <div @click="changeFunc" :title="isopen?'闹钟开':'闹钟关'" style="cursor: pointer;z-index:11;right:18px;top:20px;position: absolute;text-align: center;display: inline-block;">
@@ -61,14 +65,16 @@
         <div style="height: 16px;"></div>
 
         <div>
-          <v-icon style="font-size: 33px;margin-bottom: 22px;color: #FFB74D;">mdi-bullhorn</v-icon>
-          <h1 style="position: relative;top:-6px;padding-left: 26px;display: inline-block;color: rgba(0, 0, 0, .87);font-size: 20px;font-family: Roboto, sans-serif;line-height: 1.5;">预警</h1>
+          <!-- <v-icon style="font-size: 33px;margin-bottom: 22px;color: #FFB74D;">mdi-bullhorn</v-icon> -->
+          <img class="image-index44232" :src="Image3312" alt="">
+
+          <h1 style="position: relative;top:-6px;padding-left: 8px;display: inline-block;color: rgba(0, 0, 0, .87);font-size: 16px;font-family: Roboto, sans-serif;line-height: 1.5;">预警</h1>
         </div>
 
 
         <v-row :gutters="8">
 
-          <v-col cols="7">
+          <v-col style="padding-left: 18px;" cols="7">
  
 
 
@@ -89,7 +95,7 @@
 
 
           </v-col>
-          <v-col cols="5">
+          <v-col style="margin-top: 5px;" cols="5">
             <a-input-number 
               v-model:value="valueNumberText" 
               prefix="🕗"
@@ -103,7 +109,7 @@
             <v-btn 
               icon="mdi-plus" 
               color="#81C784"
-              style="position:relative;top:-5px;left:6px;color:#fff;"
+              style="position:relative;top:-4px;left:16px;color:#fff;width: 38px;height: 38px;"
               @click="playAllAudio"
             ></v-btn>
 
@@ -146,11 +152,14 @@
       <v-card-text>
 
         <div>
-          <v-icon style="font-size: 33px;margin-bottom: 22px;color:#AB47BC;">mdi-trending-up</v-icon>
-          <h1 style="position: relative;top:-6px;padding-left: 26px;display: inline-block;color: rgba(0, 0, 0, .87);font-size: 20px;font-family: Roboto, sans-serif;line-height: 1.5;">细嗅蔷薇</h1>
+          <v-icon style="position:relative;top:3px;font-size: 30px;margin-bottom: 22px;color:#AB47BC;margin-left: 8px;margin-right: 3px;">mdi-trending-up</v-icon>
+
+
+
+          <h1 style="position: relative;top:-6px;padding-left:8px;display: inline-block;color: rgba(0, 0, 0, .87);font-size:16px;font-family: Roboto, sans-serif;line-height: 1.5;">细嗅蔷薇</h1>
         </div>
 
-        <img style="width: 100%;max-height: 364px;" :src="Image111" >
+        <img style="width: 100%;max-height: 360px;" :src="Image111" >
       
       </v-card-text>
     </v-card>
@@ -164,6 +173,10 @@
 
   export default {
     data: () => ({
+
+      Image2212: require("@/assets/icon1211.svg"),
+      Image3312: require("@/assets/icon2212.svg"),
+
 
       Image111: require("@/assets/png111.png"),
 
@@ -615,6 +628,32 @@
   }
 </script>
 <style lang="scss">
+
+.image-index44232{
+  width: 36px;
+  height: 36px;
+  position: relative;
+  top: -10px;
+  left: 0px;
+}
+
+.image-index232{
+  width: 60px;
+  height: 60px;
+  position: relative;
+  top: 2px;
+
+  cursor: pointer;
+}
+
+.image-index111{
+  width: 60px;
+  height: 60px;
+  position: relative;
+  top: 6px;
+  left: -8px;
+}
+
 .v-card--reveal {
   bottom: 0;
   opacity: 1 !important;
