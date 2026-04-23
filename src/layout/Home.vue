@@ -485,6 +485,9 @@
       // 播放 所有音频
       async playAllAudio(){
 
+        const { ipcRenderer } = window.require('electron');   
+
+
         setTimeout(()=>{
 
           this.$nextTick(()=>{
@@ -528,6 +531,19 @@
                   
                   // 语音
                   this.setTimeAudio(_json.value,_json.id)
+
+
+                  // 发消息
+                  ipcRenderer.send("notificationFunc",{
+                    time: _json.text
+                  });
+
+                  // 图标闪烁
+                  ipcRenderer.send("flashFrameFunction",{
+                    active:true
+                  });
+
+
                 }else{
                   //console.log("已经被删了")
                 }
