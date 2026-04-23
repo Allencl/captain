@@ -54,9 +54,11 @@ async function createWindow() {
   // 消息通知
   ipcMain.on('notificationFunc', (event,option={}) => {
 
+    // image.png  image2.png
+
     new Notification({
-      icon: path.join(__dirname, isDevelopment ? '../src/assets/image.png' : './image.png'  ), // icon
-      title: "captain-"+option.time,
+      icon: path.join(__dirname, isDevelopment ? `../src/assets/${option.img}` : `./${option.img}`  ), // icon
+      title: option.title+"-"+option.time,
       body: option.time
     }).show()
 

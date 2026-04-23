@@ -323,9 +323,7 @@
         // const { ipcRenderer } = window.require('electron');   
         // var str = moment().format('YYYY/MM/DD HH:mm:ss');   
 
-        // ipcRenderer.send("notificationFunc",{
-        //   time:str
-        // });
+
       },
       // 按钮切换 上
       topClickFunc(active,item){
@@ -418,7 +416,10 @@
                     
                     // 发消息
                     ipcRenderer.send("notificationFunc",{
-                      time:str
+                      title:"定时器",
+                      time:str,
+                      img:"image.png",
+
                     });
 
                     // 图标闪烁
@@ -535,7 +536,9 @@
 
                   // 发消息
                   ipcRenderer.send("notificationFunc",{
-                    time: _json.text
+                    title:"提醒",
+                    time: _json.text,
+                    img:"image2.png"
                   });
 
                   // 图标闪烁
