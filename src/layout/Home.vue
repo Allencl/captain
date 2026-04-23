@@ -592,6 +592,9 @@
       // 签到
       async qiandaoHandle(){
 
+        const { ipcRenderer } = window.require('electron');   
+
+
         var str223 = moment().format('YYYY-MM-DD HH:mm');   
         var str = String(str223)
 
@@ -601,6 +604,11 @@
 
         this.playBuguAudio()
 
+
+          // 图标闪烁
+          ipcRenderer.send("flashFrameFunction",{
+            active:true
+          });
 
       },
     }
