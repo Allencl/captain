@@ -52,6 +52,7 @@ async function createWindow() {
 
     setTimeout(()=>{
       win.flashFrame(false); // 结束闪烁图标
+      win.blur(); 
     },10000)
 
   })  
