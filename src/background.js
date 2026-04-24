@@ -48,12 +48,12 @@ async function createWindow() {
   // 图标闪烁
   ipcMain.on('flashFrameFunction', (event,option={}) => {
 
-    win.flashFrame(true); // 开始闪烁图标
+    // win.flashFrame(true); // 开始闪烁图标
 
-    setTimeout(()=>{
-      win.flashFrame(false); // 结束闪烁图标
-      win.blur(); 
-    },10000)
+    // setTimeout(()=>{
+    //   win.flashFrame(false); // 结束闪烁图标
+    //   win.blur(); 
+    // },10000)
 
   })  
 
