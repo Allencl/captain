@@ -8,12 +8,28 @@
         <!-- <div style="height: 16px;"></div> -->
 
         <div>
-          <!-- <v-icon style="font-size: 33px;margin-bottom: 22px;color: #81C784;">mdi-sail-boat</v-icon> -->
-          <img class="image-index111" :src="Image2212" alt="">
-          <h1 style="margin: 0px;position: relative;top:15px;padding-left: 12px;display: inline-block;color: rgba(0, 0, 0, .87);font-size: 26px;font-style: italic;font-family: fantasy;line-height: 1.5;"> oh captain my captain </h1>
+
+        <v-row :gutters="0">
+          <v-col cols="7">
+
+            <!-- <v-icon style="font-size: 33px;margin-bottom: 22px;color: #81C784;">mdi-sail-boat</v-icon> -->
+            <img class="image-index111" :src="Image2212" alt="">
+            <h1 style="margin: 0px;position: relative;top:15px;padding-left:0px;display: inline-block;color: rgba(0, 0, 0, .87);font-size: 26px;font-style: italic;font-family: fantasy;line-height: 1.5;">oh captain my captain</h1>
+          
+
+          </v-col>
+          <v-col cols="5" class="home-time-text">
+            <span>{{ timeText1 }}</span>
+            <span>{{ timeText2 }}</span>
+          </v-col>
+        </v-row>
+
+
+
+
         </div>
 
-        <div style="cursor: pointer;z-index:11;right:108px;top:20px;position: absolute;" title="签到" >
+        <!-- <div style="cursor: pointer;z-index:11;right:108px;top:20px;position: absolute;" title="签到" > -->
 
           <!-- <img @click="qiandaoHandle" class="image-index232" :src="Image3312" alt=""> -->
 
@@ -24,33 +40,7 @@
             :color=" qiandaoAction? '#5865f2':'#78909C'"
             @click="qiandaoHandle"
           ></v-btn> -->
-        </div>
-
-        <div @click="changeFunc" :title="isopen?'闹钟开':'闹钟关'" style="cursor: pointer;z-index:11;right:18px;top:20px;position: absolute;text-align: center;display: inline-block;">
-
-
-          <v-btn 
-            v-if="!isopen"
-            icon="mdi-close" 
-            size="x-large"
-            variant="tonal"
-            color="#78909C"
-          ></v-btn>
-
-
-
-          <v-btn 
-            v-if="isopen"
-            icon="mdi-check-all" 
-            size="x-large"
-            variant="tonal"
-            color="#2E7D32"
-          ></v-btn>
-
-
-        </div>
-
-      
+        <!-- </div> -->
 
       </v-card-text>
     </v-card>
@@ -95,7 +85,7 @@
 
 
           </v-col>
-          <v-col style="margin-top: 5px;" cols="5">
+          <v-col cols="5">
             <a-input-number 
               v-model:value="valueNumberText" 
               prefix="🕗"
@@ -112,6 +102,27 @@
               style="position:relative;top:-4px;left:16px;color:#fff;width: 38px;height: 38px;"
               @click="playAllAudio"
             ></v-btn>
+
+
+          <div @click="changeFunc" :title="isopen?'闹钟开':'闹钟关'" style="cursor:pointer;position:relative;margin-left:50px;top:-3px;display:inline-block;">
+
+            <v-btn 
+              v-if="!isopen"
+              icon="mdi-close" 
+         
+              variant="tonal"
+              color="#78909C"
+            ></v-btn>
+
+            <v-btn 
+              v-if="isopen"
+              icon="mdi-check-all" 
+
+              variant="tonal"
+              color="#2E7D32"
+            ></v-btn>
+
+          </div>
 
           </v-col>
 
@@ -173,6 +184,10 @@
 
   export default {
     data: () => ({
+
+      timeText1:"",   // 星期
+      timeText2:"",   // 时分秒
+
 
       Image2212: require("@/assets/icon1211.svg"),
       Image3312: require("@/assets/icon2212.svg"),
@@ -252,6 +267,9 @@
         }
 
       })
+      
+
+      this.getTime()
 
     },
     mounted() {
@@ -289,6 +307,35 @@
 
     },
     methods:{
+      // 获取时间
+      getTime(){
+
+        //清除interval定时器
+        if(window.IntervalItemCenter13){
+          clearInterval(window.IntervalItemCenter13);
+        }
+
+        window.IntervalItemCenter13=setInterval(()=>{
+
+          const now = moment();
+          const weekdays = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+          const chineseWeekday = weekdays[now.day()]; 
+
+
+          // 获取标准的 24小时制时间字符串
+          const timeStr = now.format('HH:mm:ss'); 
+
+
+          this.timeText1=chineseWeekday
+          this.timeText2=timeStr
+
+
+
+        },(1000*1))  // 10秒检查一次
+
+
+
+      },
       // 循环播放
       async forEachHandle(option={}){
 
@@ -628,6 +675,19 @@
   }
 </script>
 <style lang="scss">
+
+.home-time-text{
+  font-size: 23px;
+  line-height: 81px;
+  text-align: right;
+  font-weight: 500;
+  font-family: system-ui;
+
+  span:first-child{
+    padding-right: 12px;
+    color: #dbbc26;
+  }
+}
 
 .image-index44232{
   width: 36px;
