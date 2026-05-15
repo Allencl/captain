@@ -85,7 +85,7 @@
 
 
           </v-col>
-          <v-col cols="5">
+          <v-col cols="5" style="padding-top: 17px;">
             <a-input-number 
               v-model:value="valueNumberText" 
               prefix="🕗"
@@ -104,7 +104,7 @@
             ></v-btn>
 
 
-          <div @click="changeFunc" :title="isopen?'闹钟开':'闹钟关'" style="cursor:pointer;position:relative;margin-left:56px;top:-3px;display:inline-block;">
+          <!-- <div @click="changeFunc" :title="isopen?'闹钟开':'闹钟关'" style="cursor:pointer;position:relative;margin-left:56px;top:-3px;display:inline-block;">
 
             <v-btn 
               v-if="!isopen"
@@ -122,7 +122,7 @@
               color="#2E7D32"
             ></v-btn>
 
-          </div>
+          </div> -->
 
           </v-col>
 
@@ -385,13 +385,23 @@
       timeMp3(){
 
         const now = moment();
+
+        const timeStrxiaoshi = now.format('HH'); 
         const timeStrfenz = now.format('mm'); 
         const timeStrmiao = now.format('ss'); 
         const timeText = now.format('HH:mm:ss'); 
+        const day12 = now.isoWeekday(); // 获取 ISO 星期几 (1-7)
+
+
+        // 设定当天的 08:00:00 和 24:00:00（24点代表当天的最后一刻）
+        const startTime = moment().set({ hour: 8, minute: 0, second: 0 });
+        const endTime = moment().set({ hour: 24, minute: 0, second: 0 });
+        // 判断当前时间是否在区间内（包含 8 点和 24 点整）
+        const isInRange = now.isBetween(startTime, endTime, null, '[]');
 
 
 
-        if( this.timeText != timeStrfenz){
+        if( (this.timeText!=timeStrfenz) && (day12<=5) && isInRange ){
 
 
           if( ["04","09","14","19","24","29","34","39","44","49","54","59"].includes( timeStrfenz )  ){
@@ -408,6 +418,13 @@
                 });
 
                 message.success(`时间提示:${timeText}`);
+
+                // 发消息
+                ipcRenderer.send("notificationFunc",{
+                  title:"时间提示",
+                  time: timeText,
+                  img:"image.png",
+                });
 
               })
 
@@ -475,70 +492,70 @@
 
       initFunc(){
 
-        const that=this
-        const { ipcRenderer } = window.require('electron');   
+        // const that=this
+        // const { ipcRenderer } = window.require('electron');   
 
 
-        //清除interval定时器
-        if(window.IntervalItemRight1){
-          clearInterval(window.IntervalItemRight1)
-        }
+        // //清除interval定时器
+        // if(window.IntervalItemRight1){
+        //   clearInterval(window.IntervalItemRight1)
+        // }
 
 
-        window.IntervalItemRight1=setInterval(()=>{
+        // window.IntervalItemRight1=setInterval(()=>{
 
-          const now = new Date();
-          const minutes = now.getMinutes();
-          const _hours = now.getHours();
-          const acrive = that.isopen
-          const _getDay=now.getDay()
+        //   const now = new Date();
+        //   const minutes = now.getMinutes();
+        //   const _hours = now.getHours();
+        //   const acrive = that.isopen
+        //   const _getDay=now.getDay()
           
-          // if( [4,9,14,19,24,29,34,39,44,49,54,59].includes(minutes) ){
-          // if( [14,29,44,59].includes(minutes) ){
-          if( [14,29,44,59].includes(minutes) ){
+        //   // if( [4,9,14,19,24,29,34,39,44,49,54,59].includes(minutes) ){
+        //   // if( [14,29,44,59].includes(minutes) ){
+        //   if( [14,29,44,59].includes(minutes) ){
 
-            if( (_hours >=8) && (_getDay!=0) && (_getDay!=6) ){
+        //     if( (_hours >=8) && (_getDay!=0) && (_getDay!=6) ){
 
-              // 消息推送
-              if( acrive ){
+        //       // 消息推送
+        //       if( acrive ){
 
-                var str223 = moment().format('YYYY/MM/DD HH:mm');   
-                var str = String(str223)
+        //         var str223 = moment().format('YYYY/MM/DD HH:mm');   
+        //         var str = String(str223)
 
 
-                if( that.bufferText!=str ){
+        //         if( that.bufferText!=str ){
 
-                  setTimeout(()=>{
+        //           setTimeout(()=>{
 
-                    that.bufferText=str
+        //             that.bufferText=str
                     
-                    // 发消息
-                    ipcRenderer.send("notificationFunc",{
-                      title:"定时器",
-                      time:str,
-                      img:"image.png",
+        //             // 发消息
+        //             ipcRenderer.send("notificationFunc",{
+        //               title:"定时器",
+        //               time:str,
+        //               img:"image.png",
 
-                    });
+        //             });
 
-                    // 图标闪烁
-                    ipcRenderer.send("flashFrameFunction",{
-                      active:true
-                    });
+        //             // 图标闪烁
+        //             ipcRenderer.send("flashFrameFunction",{
+        //               active:true
+        //             });
 
-                    // 播放声音
-                    that.playBuguAudio()
+        //             // 播放声音
+        //             that.playBuguAudio()
 
-                  },200)                  
+        //           },200)                  
 
-                }
+        //         }
 
-              }
+        //       }
 
-            }
+        //     }
 
-          }
+        //   }
 
-        },10000)
+        // },10000)
 
       },
       changeFunc(){
