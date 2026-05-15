@@ -387,6 +387,8 @@
         const now = moment();
         const timeStrfenz = now.format('mm'); 
         const timeStrmiao = now.format('ss'); 
+        const timeText = now.format('HH:mm:ss'); 
+
 
 
         if( this.timeText != timeStrfenz){
@@ -405,6 +407,7 @@
                   idKey:""
                 });
 
+                message.success(timeText);
 
               })
 
