@@ -104,7 +104,7 @@
             ></v-btn>
 
 
-          <div @click="changeFunc" :title="isopen?'闹钟开':'闹钟关'" style="cursor:pointer;position:relative;margin-left:50px;top:-3px;display:inline-block;">
+          <div @click="changeFunc" :title="isopen?'闹钟开':'闹钟关'" style="cursor:pointer;position:relative;margin-left:56px;top:-3px;display:inline-block;">
 
             <v-btn 
               v-if="!isopen"
@@ -712,7 +712,9 @@
 <style lang="scss">
 
 .home-time-text{
-  font-size: 23px;
+
+
+  font-size: 26px;
   line-height: 81px;
   text-align: right;
   font-weight: 500;
