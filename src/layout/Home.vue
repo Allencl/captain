@@ -14,7 +14,7 @@
 
             <!-- <v-icon style="font-size: 33px;margin-bottom: 22px;color: #81C784;">mdi-sail-boat</v-icon> -->
             <img class="image-index111" :src="Image2212" alt="">
-            <h1 style="margin: 0px;position: relative;top:15px;padding-left:0px;display: inline-block;color: rgba(0, 0, 0, .87);font-size: 26px;font-style: italic;font-family: fantasy;line-height: 1.5;">oh captain my captain</h1>
+            <h1 @click="test1" style="margin: 0px;position: relative;top:15px;padding-left:0px;display: inline-block;color: rgba(0, 0, 0, .87);font-size: 26px;font-style: italic;font-family: fantasy;line-height: 1.5;">oh captain my captain</h1>
           
 
           </v-col>
@@ -170,7 +170,7 @@
           <h1 style="position: relative;top:-6px;padding-left:8px;display: inline-block;color: rgba(0, 0, 0, .87);font-size:16px;font-family: Roboto, sans-serif;line-height: 1.5;">细嗅蔷薇</h1>
         </div>
 
-        <img style="width: 100%;max-height: 360px;" :src="Image111" >
+        <img style="width: 100%;max-height: 260px;" :src="Image111" >
       
       </v-card-text>
     </v-card>
@@ -184,6 +184,8 @@
 
   export default {
     data: () => ({
+
+      timeText:"",
 
       timeText1:"",   // 星期
       timeText2:"",   // 时分秒
@@ -328,8 +330,8 @@
 
           this.timeText1=chineseWeekday
           this.timeText2=timeStr
-
-
+  
+          this.timeMp3()
 
         },(1000*1))  // 10秒检查一次
 
@@ -379,11 +381,44 @@
         }
 
       },
+      // 时间提示音乐
+      timeMp3(){
+
+        const now = moment();
+        const timeStrfenz = now.format('mm'); 
+        const timeStrmiao = now.format('ss'); 
+
+
+        if( this.timeText != timeStrfenz){
+
+
+          if( ["04","09","14","19","24","29","34","39","44","49","54","59"].includes( timeStrfenz )  ){
+
+            if( Number(timeStrmiao)>30 ){
+
+              this.timeText=timeStrfenz
+              this.$nextTick(()=>{
+
+                const { ipcRenderer } = window.require('electron');   
+                ipcRenderer.send("getAppPathFunc",{
+                  filePath: ["map3/e.wav"],
+                  idKey:""
+                });
+
+
+              })
+
+            }
+
+          }
+
+
+
+        }
+
+      },
       test1(){
-        // const { ipcRenderer } = window.require('electron');   
-        // var str = moment().format('YYYY/MM/DD HH:mm:ss');   
-
-
+        
       },
       // 按钮切换 上
       topClickFunc(active,item){
@@ -627,7 +662,7 @@
         const { ipcRenderer } = window.require('electron');   
 
         ipcRenderer.send("getAppPathFunc",{
-          filePath: ["map3/a.wav"].concat( list.map(o=> `audio/${o}` ) ),
+          filePath: ["map3/b.wav"].concat( list.map(o=> `audio/${o}` ) ),
           idKey:id
         });
 
