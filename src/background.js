@@ -15,7 +15,7 @@ protocol.registerSchemesAsPrivileged([
 async function createWindow() {
   // Create the browser window.
   const win = new BrowserWindow({
-    width: 1294,
+    width: 1100,
     height: 800,
     autoHideMenuBar:true,   // 隐藏菜单
 
