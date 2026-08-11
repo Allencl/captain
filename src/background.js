@@ -25,7 +25,10 @@ async function createWindow() {
       webSecurity: false,  // 
 
       nodeIntegration: true,  // 开启nodec环境
-      contextIsolation: false
+
+      contextIsolation: false,
+      backgroundThrottling: false  // 支持窗口最小化 继续打印
+
       
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
