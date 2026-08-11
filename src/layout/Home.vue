@@ -3,6 +3,7 @@
     <v-card
       max-width="1100"
       elevation="2"
+      style="height: 69px;"
     >
       <v-card-text style="height: 100px;box-sizing: border-box;">
         <!-- <div style="height: 16px;"></div> -->
@@ -14,7 +15,7 @@
 
             <!-- <v-icon style="font-size: 33px;margin-bottom: 22px;color: #81C784;">mdi-sail-boat</v-icon> -->
             <img class="image-index111" :src="Image2212" alt="">
-            <h1 @click="test1" style="margin: 0px;position: relative;top:15px;padding-left:0px;display: inline-block;color: rgba(0, 0, 0, .87);font-size: 26px;font-style: italic;font-family: fantasy;line-height: 1.5;">oh captain my captain</h1>
+            <h1 @click="test1" style="margin: 0px;position: relative;top:-2px;padding-left:0px;display: inline-block;color: rgba(0, 0, 0, .87);font-size: 26px;font-style: italic;font-family: fantasy;line-height: 1.5;">oh captain my captain</h1>
           
 
           </v-col>
@@ -45,14 +46,15 @@
       </v-card-text>
     </v-card>
 
-    <div style="height: 12px;"></div>
+    <div style="height: 4px;"></div>
     <v-card
       max-width="1100"
       elevation="2"
+      style="height: 269px;"
     >
       <v-card-text>
 
-        <div style="height: 16px;"></div>
+        <!-- <div style="height: 0px;"></div> -->
 
         <div>
           <!-- <v-icon style="font-size: 33px;margin-bottom: 22px;color: #FFB74D;">mdi-bullhorn</v-icon> -->
@@ -62,7 +64,7 @@
         </div>
 
 
-        <v-row :gutters="8">
+        <v-row :gutters="4">
 
           <v-col style="padding-left: 18px;" cols="7">
  
@@ -75,7 +77,7 @@
               placeholder="音频"
               size="large"
               bordered
-              :maxTagCount="4"
+              :maxTagCount="1"
               clearable
               :listHeight="369"
               allowClear
@@ -85,7 +87,7 @@
 
 
           </v-col>
-          <v-col cols="5" style="padding-top: 17px;">
+          <v-col cols="5" style="padding-top: 12px;">
             <a-input-number 
               v-model:value="valueNumberText" 
               prefix="🕗"
@@ -93,13 +95,13 @@
               size="large"
               :precision="0"
               :step="5"
-              style="width:100px;position: relative;top:-11px;"
+              style="width:100px;position: relative;top:-6px;left:0px;"
             />
 
             <v-btn 
               icon="mdi-plus" 
               color="#81C784"
-              style="position:relative;top:-4px;left:16px;color:#fff;width: 38px;height: 38px;"
+              style="position:relative;top:0px;left:10px;color:#fff;width: 38px;height: 38px;"
               @click="playAllAudio"
             ></v-btn>
 
@@ -143,7 +145,7 @@
             >
               <v-chip :style="{ backgroundColor:'#4ea352', color:'white' }">
                 {{ item.text }}
-                <span style="background: #FFB74D;padding: 2px 8px;border-radius: 12px;margin-left: 8px;">{{ item.time }}分钟</span>
+                <span style="background: #FFB74D;padding: 0px 8px;border-radius: 12px;margin-left: 8px;">{{ item.time }}分钟</span>
               </v-chip>
             </a-popconfirm>
 
@@ -154,8 +156,8 @@
       </v-card-text>
     </v-card>
 
-    <div style="height: 12px;"></div>
-    <v-card
+    <!-- <div style="height: 12px;"></div> -->
+    <!-- <v-card
       max-width="1100"
       elevation="2"
       style="max-height:483px;"
@@ -173,7 +175,7 @@
         <img style="width: 100%;max-height: 260px;" :src="Image111" >
       
       </v-card-text>
-    </v-card>
+    </v-card> -->
 
 </template>
 <script>
@@ -243,7 +245,7 @@
         "标普500.wav",
         "纳斯达克.wav",
 
-        // "美铜.wav"
+        "美铜.wav"
 
         // "英镑兑美元.wav",
         // "欧元兑美元.wav",
@@ -735,6 +737,8 @@
 
 .home-time-text{
 
+  position: relative;
+  top: -18px;
 
   font-size: 26px;
   line-height: 81px;
@@ -769,7 +773,7 @@
   width: 60px;
   height: 60px;
   position: relative;
-  top: 6px;
+  top: -10px;
   left: -8px;
 }
 

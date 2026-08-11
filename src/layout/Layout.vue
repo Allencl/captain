@@ -1,8 +1,8 @@
 <template>
   <div class="captain-layout">
-    <div class="layout-left-menu" style="padding-top: 12px;padding-left:8px;padding-right: 12px;padding-bottom:8px;">
+    <!-- <div class="layout-left-menu" style="padding-top: 12px;padding-left:8px;padding-right: 12px;padding-bottom:8px;">
       <MoudleMenuPage />
-    </div>
+    </div> -->
     <div class="layout-content">
       <!-- <router-view /> -->
       <router-view v-slot="{ Component }">
@@ -39,7 +39,7 @@
 <style lang="scss">
 .captain-layout{
   position: relative;
-  padding-left: 200px;
+  // padding-left: 200px;
 
   .layout-left-menu{
     position: absolute;
