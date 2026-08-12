@@ -15,8 +15,8 @@ protocol.registerSchemesAsPrivileged([
 async function createWindow() {
   // Create the browser window.
   const win = new BrowserWindow({
-    width: 610,
-    height: 399,
+    width: 600,
+    height: 360,
     autoHideMenuBar:true,   // 隐藏菜单
 
     // icon:  process.env.BASE_URL + '/public/favicon.ico', // 设置图标路径

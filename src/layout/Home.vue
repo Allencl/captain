@@ -2,10 +2,10 @@
 
     <v-card
       max-width="1100"
-      elevation="2"
-      style="height: 69px;"
+      elevation="0"
+      style="height: 60px;"
     >
-      <v-card-text style="height: 100px;box-sizing: border-box;">
+      <v-card-text style="height: 60px;box-sizing: border-box;">
         <!-- <div style="height: 16px;"></div> -->
 
         <div>
@@ -15,7 +15,7 @@
 
             <!-- <v-icon style="font-size: 33px;margin-bottom: 22px;color: #81C784;">mdi-sail-boat</v-icon> -->
             <img class="image-index111" :src="Image2212" alt="">
-            <h1 @click="test1" style="margin: 0px;position: relative;top:-2px;padding-left:0px;display: inline-block;color: rgba(0, 0, 0, .87);font-size: 26px;font-style: italic;font-family: fantasy;line-height: 1.5;">oh captain my captain</h1>
+            <h1 @click="test1" style="margin: 0px;position: relative;top:-8px;padding-left:0px;display: inline-block;color: rgba(0, 0, 0, .87);font-size: 26px;font-style: italic;font-family: fantasy;line-height: 1.5;">oh captain my captain</h1>
           
 
           </v-col>
@@ -46,23 +46,13 @@
       </v-card-text>
     </v-card>
 
-    <div style="height: 4px;"></div>
+
     <v-card
       max-width="1100"
-      elevation="2"
+      elevation="0"
       style="height: 269px;"
     >
-      <v-card-text>
-
-        <!-- <div style="height: 0px;"></div> -->
-
-        <div>
-          <!-- <v-icon style="font-size: 33px;margin-bottom: 22px;color: #FFB74D;">mdi-bullhorn</v-icon> -->
-          <img class="image-index44232" :src="Image3312" alt="">
-
-          <h1 style="position: relative;top:-6px;padding-left: 8px;display: inline-block;color: rgba(0, 0, 0, .87);font-size: 16px;font-family: Roboto, sans-serif;line-height: 1.5;">预警</h1>
-        </div>
-
+      <v-card-text style="padding-top:8px;">
 
         <v-row :gutters="4">
 
@@ -100,7 +90,7 @@
 
             <v-btn 
               icon="mdi-plus" 
-              color="#81C784"
+              color="#8BC34A"
               style="position:relative;top:0px;left:10px;color:#fff;width: 38px;height: 38px;"
               @click="playAllAudio"
             ></v-btn>
@@ -133,7 +123,7 @@
         <div>
 
 
-          <v-chip-group>
+          <v-chip-group style="padding-top: 0px;">
 
             <a-popconfirm
               v-for="(item,j) in chipList"
@@ -143,7 +133,7 @@
               cancel-text="No"
               @confirm="closeTagHandle(item)"
             >
-              <v-chip :style="{ backgroundColor:'#4ea352', color:'white' }">
+              <v-chip :style="{ backgroundColor:'#4ea352', color:'white', marginTop:'2px' }">
                 {{ item.text }}
                 <span style="background: #FFB74D;padding: 0px 8px;border-radius: 12px;margin-left: 8px;">{{ item.time }}分钟</span>
               </v-chip>
@@ -738,7 +728,7 @@
 .home-time-text{
 
   position: relative;
-  top: -18px;
+  top: -25px;
 
   font-size: 26px;
   line-height: 81px;
@@ -748,7 +738,7 @@
 
   span:first-child{
     padding-right: 12px;
-    color: #dbbc26;
+    color: #8BC34A;
   }
 }
 
@@ -773,7 +763,7 @@
   width: 60px;
   height: 60px;
   position: relative;
-  top: -10px;
+  top: -16px;
   left: -8px;
 }
 
