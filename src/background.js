@@ -18,6 +18,8 @@ async function createWindow() {
     width: 600,
     height: 360,
     autoHideMenuBar:true,   // 隐藏菜单
+    title: ' ',   // 标题设为空格，隐藏左上角 caption
+    icon: path.join(__dirname, isDevelopment ? '../public/logo-transparent.ico' : './logo-transparent.ico'), // 透明图标，让左上角 logo 在任何标题栏颜色下都隐形
 
     // icon:  process.env.BASE_URL + '/public/favicon.ico', // 设置图标路径
     webPreferences: {
