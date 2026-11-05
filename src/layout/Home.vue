@@ -1,5 +1,7 @@
 <template>
 
+    <div style="height: 3px;"></div>
+
     <v-card
       max-width="1100"
       elevation="0"
@@ -11,7 +13,7 @@
         <div>
 
         <v-row :gutters="0">
-          <v-col cols="7">
+          <v-col cols="6">
 
             <!-- <v-icon style="font-size: 33px;margin-bottom: 22px;color: #81C784;">mdi-sail-boat</v-icon> -->
             <img class="image-index111" :src="Image2212" alt="">
@@ -19,7 +21,7 @@
           
 
           </v-col>
-          <v-col cols="5" class="home-time-text">
+          <v-col cols="6" class="home-time-text">
             <span>{{ timeText1 }}</span>
             <span>{{ timeText2 }}</span>
           </v-col>
@@ -46,6 +48,7 @@
       </v-card-text>
     </v-card>
 
+    <div style="height: 32px;"></div>
 
     <v-card
       max-width="1100"
@@ -730,7 +733,7 @@
   position: relative;
   top: -25px;
 
-  font-size: 26px;
+  font-size: 36px;
   line-height: 81px;
   text-align: right;
   font-weight: 500;
