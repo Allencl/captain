@@ -1,13 +1,13 @@
 <template>
 
-    <div style="height: 3px;"></div>
+    <!-- <div style="height: 3px;"></div> -->
 
     <v-card
       max-width="1100"
       elevation="0"
       style="height: 60px;"
     >
-      <v-card-text style="height: 60px;box-sizing: border-box;">
+      <v-card-text style="height: 60px;box-sizing: border-box;padding-top: 3px;">
         <!-- <div style="height: 16px;"></div> -->
 
         <div>
@@ -17,7 +17,7 @@
 
             <!-- <v-icon style="font-size: 33px;margin-bottom: 22px;color: #81C784;">mdi-sail-boat</v-icon> -->
             <img class="image-index111" :src="Image2212" alt="">
-            <h1 @click="test1" style="margin: 0px;position: relative;top:-8px;padding-left:0px;display: inline-block;color: rgba(0, 0, 0, .87);font-size: 26px;font-style: italic;font-family: fantasy;line-height: 1.5;">oh captain my captain</h1>
+            <h1 @click="test1" style="margin: 0px;position: relative;top:-4px;padding-left:0px;display: inline-block;color: rgba(0, 0, 0, .87);font-size: 26px;font-style: italic;font-family: fantasy;line-height: 1.5;">oh captain my captain</h1>
           
 
           </v-col>
@@ -48,7 +48,7 @@
       </v-card-text>
     </v-card>
 
-    <div style="height: 32px;"></div>
+    <!-- <div style="height: 32px;"></div> -->
 
     <v-card
       max-width="1100"
@@ -763,10 +763,10 @@
 }
 
 .image-index111{
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   position: relative;
-  top: -16px;
+  top: -12px;
   left: -8px;
 }
 
