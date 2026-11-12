@@ -16,7 +16,7 @@ async function createWindow() {
   // Create the browser window.
   const win = new BrowserWindow({
     width: 690,
-    height: 82,
+    height: 86,
     autoHideMenuBar:true,   // 隐藏菜单
     title: ' ',   // 标题设为空格，隐藏左上角 caption
     icon: path.join(__dirname, isDevelopment ? '../public/logo-transparent.ico' : './logo-transparent.ico'), // 透明图标，让左上角 logo 在任何标题栏颜色下都隐形
