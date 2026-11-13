@@ -8,7 +8,7 @@
       style="height: 60px;"
     >
       <v-card-text style="height: 60px;box-sizing: border-box;padding-top: 3px;">
-        <!-- <div style="height: 16px;"></div> -->
+        <div style="height: 10px;"></div> 
 
         <div>
 
